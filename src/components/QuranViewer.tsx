@@ -10,6 +10,8 @@ import {
   Sliders,
   X,
   Headphones,
+  Play,
+  Pause,
   Bookmark as BookmarkIcon
 } from 'lucide-react';
 import { ReadingMode, ThemeMode, QuranMetadata, Bookmark } from '../types';
@@ -257,18 +259,21 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
 
     if (isHorizontal && isSufficientDist) {
       isSwiping.current = true;
-      if (deltaX < 0) {
-        // Swiped Left in RTL -> Next Page
-        if (effectiveMode === 'book') {
+      if (effectiveMode === 'book') {
+        if (deltaX < 0) {
+          // In Desktop Book View: Left Arrow/Drag -> Next Spread
           changePage(Math.min(totalPages, rightPage + 2));
         } else {
-          changePage(Math.min(totalPages, currentPage + 1));
+          // Right Arrow/Drag -> Previous Spread
+          changePage(Math.max(1, rightPage - 2));
         }
       } else {
-        // Swiped Right in RTL -> Previous Page
-        if (effectiveMode === 'book') {
-          changePage(Math.max(1, rightPage - 2));
+        // Mobile Single Page View:
+        if (deltaX > 0) {
+          // Swiping Right -> Advance to Next Page (e.g. Page 1 Fatihah -> Page 2 Alif Lam Meem)
+          changePage(Math.min(totalPages, currentPage + 1));
         } else {
+          // Swiping Left -> Return to Previous Page
           changePage(Math.max(1, currentPage - 1));
         }
       }
@@ -289,25 +294,26 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
     const clickX = e.clientX - rect.left;
     const width = rect.width;
 
-    // Left 22% tap -> Next Page (in RTL)
-    if (clickX < width * 0.22) {
-      if (effectiveMode === 'book') {
+    if (effectiveMode === 'book') {
+      if (clickX < width * 0.25) {
         changePage(Math.min(totalPages, rightPage + 2));
-      } else {
-        changePage(Math.min(totalPages, currentPage + 1));
-      }
-    } 
-    // Right 22% tap -> Previous Page (in RTL)
-    else if (clickX > width * 0.78) {
-      if (effectiveMode === 'book') {
+      } else if (clickX > width * 0.75) {
         changePage(Math.max(1, rightPage - 2));
       } else {
-        changePage(Math.max(1, currentPage - 1));
+        onToggleZenMode();
       }
-    } 
-    // Center 56% tap -> Toggle Zen Mode
-    else {
-      onToggleZenMode();
+    } else {
+      // Mobile Single Page:
+      if (clickX > width * 0.70) {
+        // Right side tap -> Next Page (Page 1 -> Page 2)
+        changePage(Math.min(totalPages, currentPage + 1));
+      } else if (clickX < width * 0.30) {
+        // Left side tap -> Previous Page
+        changePage(Math.max(1, currentPage - 1));
+      } else {
+        // Center tap -> Toggle Zen Mode
+        onToggleZenMode();
+      }
     }
   };
 
@@ -556,20 +562,17 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
       {effectiveMode === 'single' && (
         <div 
           onClick={handlePageTap}
-          className="w-full flex-1 flex flex-col items-center justify-center relative cursor-pointer p-0 select-none min-h-[calc(100dvh-54px)]"
+          className="w-full flex-1 flex flex-col items-center justify-center relative cursor-pointer p-0 select-none min-h-[calc(100dvh-54px)] pb-20 sm:pb-4"
         >
           {/* Full-Bleed Quran Page Image (Maximized for Mobile Screen) */}
           <div
             className={`relative rounded-none sm:rounded-2xl overflow-hidden shadow-none sm:shadow-2xl transition-all flex items-center justify-center w-full max-w-full sm:max-w-3xl ${pageWrapperClasses}`}
             style={{ transform: `scale(${zoom / 100})`, transformOrigin: 'center center' }}
           >
-            {/* Top-Right Corner Save/Bookmark Button on Every Page */}
-            {renderBookmarkButton(currentPage, 'top-3 right-3 sm:top-3.5 sm:right-3.5')}
-
             <img
               src={`/pages/page_${currentPage}.webp`}
               alt={`Hafezi Quran Page ${currentPage}`}
-              className="w-full h-[calc(100dvh-54px)] sm:h-[86vh] object-contain block mx-auto select-none transition-all"
+              className="w-full h-[calc(100dvh-125px)] sm:h-[86vh] object-contain block mx-auto select-none transition-all"
               loading="eager"
             />
 
@@ -674,37 +677,138 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
       )}
 
       {/* ========================================================
-          MOBILE FLOATING AUDIO TRIGGER (Sleek corner button on mobile)
+          1. MOBILE APP FLOATING BOTTOM NAVIGATION BAR (Clean App Style)
       ======================================================== */}
       {isMobileScreen && !isZenMode && (
-        <div className="fixed bottom-4 right-4 z-35 animate-in fade-in">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              if (onPlayPageAudio) onPlayPageAudio(currentPage);
-              else onToggleAudio?.();
-            }}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-full shadow-[0_8px_25px_rgba(0,0,0,0.35)] backdrop-blur-xl border transition-all cursor-pointer ${
-              isAudioPlaying
-                ? 'bg-emerald-600 text-white border-emerald-400 ring-2 ring-emerald-400/50 animate-pulse'
-                : 'bg-emerald-950/90 hover:bg-emerald-900 text-emerald-100 border-emerald-500/50'
-            }`}
-            title={isEn ? 'Play Page Audio Recitation' : 'এই পৃষ্ঠার তিলাওয়াত শুনুন'}
-          >
-            <Headphones className="w-4 h-4 text-amber-300 shrink-0" />
-            <span className="text-xs font-bold tracking-wide">
-              {isAudioPlaying ? (isEn ? 'Playing' : 'চলছে...') : (isEn ? 'Recite' : 'তিলাওয়াত')}
-            </span>
-          </button>
+        <div className="fixed bottom-3 inset-x-3 max-w-sm mx-auto z-40">
+          {/* Slider Popover on Mobile */}
+          {showSliderPopover && (
+            <div className="p-4 rounded-3xl bg-white/95 dark:bg-[#0c1810]/95 backdrop-blur-2xl border border-emerald-500/40 shadow-[0_15px_50px_rgba(0,0,0,0.6)] flex flex-col gap-2.5 w-full mb-2 animate-in slide-in-from-bottom-2">
+              <div className="flex items-center justify-between text-xs font-bold text-gray-800 dark:text-gray-200">
+                <span className="text-sm font-bold flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
+                  <Sliders className="w-4 h-4" />
+                  <span>{isEn ? 'Jump to Page' : 'পৃষ্ঠায় যান'}</span>
+                </span>
+                <span className="px-2.5 py-0.5 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-black text-sm">
+                  {isEn ? `${currentPage} / ${totalPages}` : `${toBanglaNumber(currentPage)} / ${toBanglaNumber(totalPages)}`}
+                </span>
+                <button
+                  onClick={() => setShowSliderPopover(false)}
+                  className="p-1 rounded-full text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <input
+                type="range"
+                min={1}
+                max={totalPages}
+                value={currentPage}
+                onChange={(e) => changePage(parseInt(e.target.value, 10))}
+                className="w-full h-3 bg-emerald-100 dark:bg-emerald-950 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+              />
+
+              <div className="flex justify-between text-[11px] text-gray-500 font-bold px-1">
+                <span>{isEn ? '1 (Fatihah)' : '১ (ফাতিহা)'}</span>
+                <span>{isEn ? '300 (Kahf)' : '৩০০ (কাহাফ)'}</span>
+                <span>{isEn ? '611 (Nas)' : '৬১১ (নাস)'}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Floating Mobile App Bar with Elevated Center Play Button */}
+          <div className="relative rounded-full bg-white/95 dark:bg-[#07170e]/95 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.5)] px-3 py-1.5 flex items-center justify-between">
+            
+            {/* Left Action: Previous Page (Page 2 -> Page 1) */}
+            <button
+              onClick={() => changePage(currentPage - 1)}
+              disabled={currentPage <= 1}
+              className="flex items-center justify-center w-10 h-10 rounded-full text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 disabled:opacity-20 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer"
+              title={isEn ? 'Previous Page' : 'পূর্ববর্তী পৃষ্ঠা'}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Bookmark / Save Action */}
+            {(() => {
+              const isBookmarked = (bookmarks || []).some((b) => b.page === currentPage);
+              return (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    sfx.playGoldenClick();
+                    onOpenBookmarkModal?.(currentPage);
+                  }}
+                  className={`flex items-center justify-center w-10 h-10 rounded-full transition-all active:scale-90 cursor-pointer ${
+                    isBookmarked
+                      ? 'bg-emerald-600 text-white shadow-md'
+                      : 'text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40'
+                  }`}
+                  title={isEn ? 'Bookmark / Save Page' : 'পৃষ্ঠা সেভ / বুকমার্ক করুন'}
+                >
+                  <BookmarkIcon className={`w-5 h-5 ${isBookmarked ? 'fill-current' : ''}`} />
+                </button>
+              );
+            })()}
+
+            {/* Elevated Center Play / Pause Audio Button */}
+            <div className="relative -mt-6">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onPlayPageAudio) onPlayPageAudio(currentPage);
+                  else onToggleAudio?.();
+                }}
+                className={`w-13 h-13 rounded-full flex items-center justify-center text-white shadow-[0_8px_25px_rgba(16,185,129,0.55)] border-3 border-[#f7f5ee] dark:border-[#07170e] transition-all active:scale-90 cursor-pointer ${
+                  isAudioPlaying && audioPlayingPage === currentPage
+                    ? 'bg-gradient-to-tr from-emerald-600 to-emerald-400 ring-4 ring-emerald-400/40 animate-pulse'
+                    : 'bg-gradient-to-tr from-emerald-700 via-emerald-600 to-amber-500 hover:scale-105'
+                }`}
+                title={isEn ? 'Play / Pause Recitation' : 'অডিও তিলাওয়াত শুনুন'}
+              >
+                {isAudioPlaying && audioPlayingPage === currentPage ? (
+                  <Pause className="w-5 h-5 fill-current" />
+                ) : (
+                  <Play className="w-5 h-5 fill-current ml-0.5" />
+                )}
+              </button>
+            </div>
+
+            {/* Page Dial / Slider Trigger */}
+            <button
+              onClick={() => setShowSliderPopover(!showSliderPopover)}
+              className="flex flex-col items-center justify-center px-2.5 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300/60 dark:border-emerald-700/60 text-emerald-900 dark:text-emerald-200 transition-all active:scale-90 cursor-pointer"
+              title={isEn ? 'Page Slider' : 'পৃষ্ঠা স্লাইডার'}
+            >
+              <span className="text-[9px] uppercase font-black text-emerald-600 dark:text-emerald-400 leading-none">
+                {isEn ? 'Page' : 'পৃষ্ঠা'}
+              </span>
+              <span className="text-xs font-black tracking-tight mt-0.5">
+                {isEn ? currentPage : toBanglaNumber(currentPage)}
+              </span>
+            </button>
+
+            {/* Right Action: Next Page (Page 1 -> Page 2) */}
+            <button
+              onClick={() => changePage(currentPage + 1)}
+              disabled={currentPage >= totalPages}
+              className="flex items-center justify-center w-10 h-10 rounded-full text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 disabled:opacity-20 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer"
+              title={isEn ? 'Next Page' : 'পরবর্তী পৃষ্ঠা'}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+          </div>
         </div>
       )}
 
       {/* ========================================================
-          FLOATING TOOL DOCK (Mobile & Desktop)
+          2. DESKTOP / TABLET FLOATING TOOL DOCK
       ======================================================== */}
-      {!isZenMode && (
-        <div className="fixed bottom-2.5 sm:bottom-5 left-1/2 -translate-x-1/2 z-35 flex flex-col items-center gap-2 max-w-[96vw]">
-          {/* Slider Popover (Toggled by the Sliders button) */}
+      {!isMobileScreen && !isZenMode && (
+        <div className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-35 flex flex-col items-center gap-2 max-w-[96vw]">
+          {/* Slider Popover */}
           {showSliderPopover && (
             <div className="p-3.5 sm:p-4 rounded-2xl bg-white/95 dark:bg-[#12161a]/95 backdrop-blur-xl border border-[#e5dec9] dark:border-[#2a323d] shadow-2xl flex flex-col gap-2.5 w-[90vw] max-w-sm mb-1 animate-in slide-in-from-bottom-2">
               <div className="flex items-center justify-between text-xs font-bold text-gray-700 dark:text-gray-300">
@@ -740,7 +844,7 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
             </div>
           )}
 
-          {/* Floating Actions Pill Dock */}
+          {/* Floating Actions Pill Dock on Desktop */}
           <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-2xl bg-white/95 dark:bg-[#12161a]/95 backdrop-blur-xl border border-[#e5dec9] dark:border-[#2a323d] shadow-[0_10px_35px_rgba(0,0,0,0.25)]">
             {/* Previous Page (RTL) */}
             <button
