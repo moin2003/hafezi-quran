@@ -197,14 +197,47 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
     }
   };
 
-  // Touch Swipe Handlers for mobile gestures
+  // Intelligent adjacent page image preloading for instantaneous flips
+  useEffect(() => {
+    const pagesToPreload = [
+      currentPage - 2,
+      currentPage - 1,
+      currentPage + 1,
+      currentPage + 2,
+      currentPage + 3,
+    ].filter((p) => p >= 1 && p <= totalPages);
+
+    pagesToPreload.forEach((p) => {
+      const img = new Image();
+      img.src = `/pages/page_${p}.webp`;
+    });
+  }, [currentPage, totalPages]);
+
+  // Touch Swipe Handlers for smooth mobile gestures
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
+  const touchStartTime = useRef<number>(0);
+  const isSwiping = useRef<boolean>(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
       touchStartX.current = e.touches[0].clientX;
       touchStartY.current = e.touches[0].clientY;
+      touchStartTime.current = Date.now();
+      isSwiping.current = false;
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const deltaX = currentX - touchStartX.current;
+    const deltaY = currentY - touchStartY.current;
+
+    // If movement is predominantly horizontal, mark as swiping
+    if (Math.abs(deltaX) > 15 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      isSwiping.current = true;
     }
   };
 
@@ -214,19 +247,26 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
     const touchEndY = e.changedTouches[0].clientY;
     const deltaX = touchEndX - touchStartX.current;
     const deltaY = touchEndY - touchStartY.current;
+    const deltaTime = Date.now() - touchStartTime.current;
 
-    // Horizontal swipe threshold
-    if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3) {
+    // Horizontal swipe criteria:
+    // 1. Distance > 25px OR fast flick (distance > 18px and time < 300ms)
+    // 2. Horizontal movement exceeds vertical movement
+    const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY) * 1.05;
+    const isSufficientDist = Math.abs(deltaX) > 25 || (Math.abs(deltaX) > 18 && deltaTime < 350);
+
+    if (isHorizontal && isSufficientDist) {
+      isSwiping.current = true;
       if (deltaX < 0) {
         // Swiped Left in RTL -> Next Page
-        if (readingMode === 'book') {
+        if (effectiveMode === 'book') {
           changePage(Math.min(totalPages, rightPage + 2));
         } else {
           changePage(Math.min(totalPages, currentPage + 1));
         }
       } else {
         // Swiped Right in RTL -> Previous Page
-        if (readingMode === 'book') {
+        if (effectiveMode === 'book') {
           changePage(Math.max(1, rightPage - 2));
         } else {
           changePage(Math.max(1, currentPage - 1));
@@ -236,26 +276,30 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
 
     touchStartX.current = null;
     touchStartY.current = null;
+    setTimeout(() => {
+      isSwiping.current = false;
+    }, 280);
   };
 
   // Tap-to-flip or tap-to-toggle zen mode on single page
   const handlePageTap = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isSwiping.current) return;
     if ((e.target as HTMLElement).closest('button, input, a')) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const width = rect.width;
 
-    // Left 20% tap -> Next Page (in RTL)
+    // Left 22% tap -> Next Page (in RTL)
     if (clickX < width * 0.22) {
-      if (readingMode === 'book') {
+      if (effectiveMode === 'book') {
         changePage(Math.min(totalPages, rightPage + 2));
       } else {
         changePage(Math.min(totalPages, currentPage + 1));
       }
     } 
-    // Right 20% tap -> Previous Page (in RTL)
+    // Right 22% tap -> Previous Page (in RTL)
     else if (clickX > width * 0.78) {
-      if (readingMode === 'book') {
+      if (effectiveMode === 'book') {
         changePage(Math.max(1, rightPage - 2));
       } else {
         changePage(Math.max(1, currentPage - 1));
@@ -327,8 +371,9 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
   return (
     <div 
       onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      className={`min-h-[100dvh] pt-13 sm:pt-16 pb-0 sm:pb-6 select-none transition-colors duration-300 ${themeClasses} flex flex-col justify-center relative overflow-x-hidden ${isEn ? 'font-sans' : 'font-bengali'}`}
+      className={`min-h-[100dvh] pt-13 sm:pt-16 pb-0 sm:pb-6 select-none transition-colors duration-300 ${themeClasses} flex flex-col justify-center relative overflow-x-hidden touch-pan-y ${isEn ? 'font-sans' : 'font-bengali'}`}
     >
       {/* Floating Side Flip Buttons on Desktop/Laptop/Tablet (Left & Right Screen Edges) */}
       {effectiveMode === 'book' && !isZenMode && (
