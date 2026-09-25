@@ -1,0 +1,37 @@
+# Hafezi Quran Sharif | হাফেজী কুরআন শরীফ
+
+> A free, open digital platform for reading the complete 15-line Noorani Hafezi Holy Quran online.
+> বিনামূল্যে অনলাইনে পড়ুন সম্পূর্ণ ১৫ লাইনের নূরানী হাফিজী কুরআন শরীফ।
+
+## About | সম্পর্কে
+This website provides the complete Holy Quran (1–611 pages) in the traditional 15-line
+Noorani Hafezi script — used by millions of Muslims in Bangladesh and India for Hifz
+(Quran memorization). It is a free, ad-free digital Quran platform.
+
+এই ওয়েবসাইটে বাংলাদেশ ও ভারতে হিফজের জন্য ব্যবহৃত ঐতিহ্যবাহী ১৫ লাইনের নূরানী
+হাফিজী কুরআন শরীফ সম্পূর্ণ বিনামূল্যে পড়া যায় (১–৬১১ পৃষ্ঠা)।
+
+## Features | বৈশিষ্ট্যসমূহ
+- Complete Holy Quran — 611 pages, 15-line Noorani Hafezi script
+- Para (Juz / পারা), Surah (সূরা), Ruku (রুকু), Manzil (মঞ্জিল) navigation
+- Audio Tilawat (অডিও তিলাওয়াত) by renowned Qaris
+- Bengali (বাংলা) and English interface
+- Dark mode, Sepia mode, Paper mode reading themes
+- Mobile PWA — installable on Android and iOS
+- Swipe gesture navigation (left/right) for page turning
+
+## Keywords | কীওয়ার্ড
+কোরআন শরীফ, কুরআন শরীফ, হাফেজী কুরআন, নূরানী কুরআন, ১৫ লাইন কুরআন,
+quran sharif bangla, hafezi quran online, noorani quran, quran tilawat,
+পবিত্র কুরআন, quran online reading, hafezi quran sharif, নূরানী কুরআন শরীফ
+
+## Developer | ডেভেলপার
+Hafiz Md. Moinul Islam (হাফেজ মোঃ মঈনুল ইসলাম)
+Email: moinmoin6308@gmail.com
+GitHub: https://github.com/moin2003/hafezi-quran
+
+## Technology
+React 18, TypeScript, Tailwind CSS, Vite, Vercel
+
+## License
+Free to use for educational and religious purposes.
