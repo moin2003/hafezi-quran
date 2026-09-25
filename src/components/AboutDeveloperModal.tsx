@@ -3,16 +3,16 @@ import {
   X,
   Mail,
   Sparkles,
+  Award,
   Check,
   Copy,
   ExternalLink,
   Heart,
-  BadgeCheck,
-  ArrowUpRight
+  Share2
 } from 'lucide-react';
 import { sfx } from '../utils/sfxService';
 
-// Official Minimalist Brand Icons
+// Official Brand Icons
 const XTwitterIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -76,86 +76,107 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
 
   const socialLinks = [
     {
-      name: 'X (Twitter)',
+      name: isEn ? 'X (Twitter)' : 'এক্স (টুইটার)',
       handle: '@moinul_islam25',
       url: 'https://x.com/moinul_islam25',
       icon: XTwitterIcon,
-      theme: 'hover:border-zinc-500/60 hover:bg-zinc-900/80',
+      theme: 'hover:border-zinc-400 hover:text-white bg-zinc-950/70',
+      badge: isEn ? 'Official' : 'অফিসিয়াল',
     },
     {
-      name: 'Facebook',
+      name: isEn ? 'Facebook' : 'ফেসবুক',
       handle: 'moinulislam23',
       url: 'https://www.facebook.com/moinulislam23',
       icon: FacebookIcon,
-      theme: 'hover:border-blue-500/60 hover:bg-blue-950/60',
+      theme: 'hover:border-blue-400 hover:text-blue-300 bg-blue-950/40',
+      badge: isEn ? 'Social' : 'সোশ্যাল',
     },
     {
-      name: 'Instagram',
+      name: isEn ? 'Instagram' : 'ইনস্টাগ্রাম',
       handle: '@moinul_islam_25',
       url: 'https://www.instagram.com/moinul_islam_25/',
       icon: InstagramIcon,
-      theme: 'hover:border-pink-500/60 hover:bg-pink-950/60',
+      theme: 'hover:border-pink-400 hover:text-pink-300 bg-gradient-to-br from-purple-950/40 to-pink-950/30',
+      badge: isEn ? 'Photos' : 'প্রোফাইল',
     },
     {
-      name: 'Threads',
+      name: isEn ? 'Threads' : 'থ্রেডস',
       handle: '@moinul_islam_25',
       url: 'https://www.threads.net/@moinul_islam_25',
       icon: ThreadsIcon,
-      theme: 'hover:border-neutral-500/60 hover:bg-neutral-900/80',
+      theme: 'hover:border-neutral-400 hover:text-white bg-neutral-950/70',
+      badge: isEn ? 'Threads' : 'থ্রেডস',
     },
     {
-      name: 'YouTube',
+      name: isEn ? 'YouTube' : 'ইউটিউব',
       handle: '@marshalgamerz',
       url: 'https://www.youtube.com/@marshalgamerz',
       icon: YoutubeIcon,
-      theme: 'hover:border-red-500/60 hover:bg-red-950/60',
+      theme: 'hover:border-red-400 hover:text-red-300 bg-red-950/40',
+      badge: isEn ? 'Channel' : 'চ্যানেল',
     },
     {
-      name: 'GitHub',
+      name: isEn ? 'GitHub' : 'গিটহাব',
       handle: '@moin2003',
       url: 'https://github.com/moin2003',
       icon: GithubIcon,
-      theme: 'hover:border-emerald-500/60 hover:bg-emerald-950/60',
+      theme: 'hover:border-emerald-400 hover:text-white bg-gray-950/70',
+      badge: isEn ? 'Developer' : 'ডেভেলপার',
     },
   ];
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 select-none overflow-y-auto ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 select-none overflow-y-auto ${
         isEn ? 'font-sans' : 'font-bengali'
       }`}
     >
-      {/* Deep Glass Backdrop */}
+      {/* Backdrop with Deep Islamic Aura */}
       <div
-        className="fixed inset-0 bg-black/85 backdrop-blur-xl transition-opacity animate-in fade-in duration-300"
+        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity animate-in fade-in"
         onClick={onClose}
       />
 
-      {/* Main Luxury Rounded Bento Modal */}
-      <div className="relative w-full max-w-xl bg-gradient-to-b from-[#081f12] via-[#04140b] to-[#010905] rounded-[36px] shadow-[0_30px_90px_rgba(0,0,0,0.95)] border border-emerald-500/25 text-white overflow-hidden animate-in zoom-in-95 duration-250 my-auto">
+      {/* Main Spacious Royal Modal Card */}
+      <div className="relative w-full max-w-2xl sm:max-w-3xl bg-gradient-to-b from-[#072413] via-[#041a0e] to-[#021008] rounded-[28px] sm:rounded-[36px] shadow-[0_30px_90px_rgba(0,0,0,0.95)] border border-amber-400/40 text-white overflow-hidden animate-in zoom-in-95 duration-200 my-auto">
         
-        {/* Soft Ambient Radiance Top */}
-        <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-emerald-500/25 via-emerald-600/5 to-transparent pointer-events-none rounded-t-[36px]" />
-        
-        {/* Close Button Top-Right Minimal */}
-        <button
-          onClick={onClose}
-          className="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer border border-white/10 hover:scale-105 active:scale-95 backdrop-blur-md"
-          title={isEn ? 'Close' : 'বন্ধ করুন'}
-        >
-          <X className="w-4 h-4" />
-        </button>
+        {/* Ambient Top Glow */}
+        <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-emerald-500/20 via-amber-400/5 to-transparent pointer-events-none" />
 
-        {/* Modal Content */}
-        <div className="relative z-10 p-6 sm:p-8 space-y-5 max-h-[85vh] overflow-y-auto custom-scrollbar">
+        {/* Top Header Controls */}
+        <div className="relative z-10 px-5 sm:px-7 pt-5 pb-3.5 flex items-center justify-between border-b border-emerald-800/60 bg-black/20">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 rounded-xl bg-amber-400/10 border border-amber-400/30 text-amber-300 shadow-sm">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
+            </div>
+            <div>
+              <h3 className="font-extrabold text-base sm:text-lg text-amber-200 tracking-wide">
+                {isEn ? 'About the Developer & Initiator' : 'উদ্যোক্তা ও ডেভেলপার পরিচিতি'}
+              </h3>
+              <p className="text-[11px] text-emerald-300/80 font-medium">
+                {isEn ? 'Creator of 15 Lines Noorani Hafezi Quran' : '১৫ লাইনের নূরানী হাফেজী কুরআন শরীফ প্ল্যাটফর্ম'}
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white flex items-center justify-center transition-all cursor-pointer border border-white/10 hover:scale-105 active:scale-95"
+            title={isEn ? 'Close' : 'বন্ধ করুন'}
+          >
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+        </div>
+
+        {/* Modal Body */}
+        <div className="relative z-10 p-5 sm:p-7 space-y-5 max-h-[82vh] overflow-y-auto">
           
-          {/* Hero Profile Header (Circular Minimal Avatar with Glowing Aura) */}
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 pt-1">
+          {/* Profile Hero Card with Round Portrait & Comprehensive Bio */}
+          <div className="p-5 sm:p-6 rounded-3xl bg-white/[0.04] border border-emerald-500/30 backdrop-blur-md shadow-lg flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6">
             
-            {/* Round Glass Portrait */}
-            <div className="relative shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-emerald-400 to-amber-200 shadow-[0_0_35px_rgba(16,185,129,0.35)]">
-                <div className="w-full h-full rounded-full overflow-hidden bg-[#03150b] ring-2 ring-black/40">
+            {/* Round Luxury Portrait with Glowing Halo */}
+            <div className="relative shrink-0 flex flex-col items-center">
+              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-emerald-400 to-amber-300 shadow-[0_0_35px_rgba(251,191,36,0.35)] flex items-center justify-center">
+                <div className="w-full h-full rounded-full overflow-hidden bg-[#03150b] ring-2 ring-black/40 relative">
                   <img
                     src="/images/moinul_islam.webp"
                     alt="Hafiz Md. Moinul Islam"
@@ -169,54 +190,73 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
                   />
                 </div>
               </div>
-              
-              {/* Verified Badge */}
+
+              {/* Verified Crown / Award Badge */}
               <div 
-                className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center border-2 border-[#05140b] shadow-lg"
-                title={isEn ? 'Verified Hafiz & Developer' : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার'}
+                className="absolute -bottom-1 sm:bottom-0 right-1 sm:right-2 p-1.5 rounded-full bg-emerald-600 text-white shadow-lg border-2 border-[#041a0e]"
+                title={isEn ? 'Verified Hafez-e-Quran & Developer' : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার'}
               >
-                <BadgeCheck className="w-4 h-4 text-amber-300" />
+                <Award className="w-4 h-4 text-amber-300" />
               </div>
             </div>
 
-            {/* Profile Intro Info */}
+            {/* Comprehensive Developer Info & Arabic Monogram */}
             <div className="text-center sm:text-left flex-1 min-w-0">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[11px] font-semibold tracking-wide mb-1.5">
-                <Sparkles className="w-3 h-3 text-amber-300" />
-                <span>{isEn ? 'Initiator & Lead Developer' : 'উদ্যোক্তা ও প্রধান ডেভেলপার'}</span>
-              </div>
               
-              <h2 className="text-2xl sm:text-[26px] font-extrabold text-white tracking-tight leading-tight drop-shadow">
+              {/* Badge & Arabic Calligraphy header */}
+              <div className="flex flex-wrap items-center justify-center sm:justify-between gap-2 mb-2">
+                <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-950/90 border border-emerald-400/40 text-emerald-300 text-[11px] font-bold shadow-xs">
+                  <Sparkles className="w-3 h-3 text-amber-300" />
+                  <span>{isEn ? 'Initiator & Lead Developer' : 'উদ্যোক্তা ও প্রধান ডেভেলপার'}</span>
+                </div>
+                <div className="font-arabic text-amber-300 font-bold text-sm tracking-wider px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20">
+                  مَعِين ✦ MI
+                </div>
+              </div>
+
+              {/* Full Developer Name */}
+              <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow tracking-wide">
                 {isEn ? 'Hafiz Md. Moinul Islam' : 'হাফেজ মোঃ মঈনুল ইসলাম'}
               </h2>
               
-              <p className="text-xs sm:text-sm text-emerald-200/85 font-medium mt-1">
+              {/* Professional Designation */}
+              <p className="text-xs sm:text-sm text-emerald-200/90 font-semibold mt-1">
                 {isEn
-                  ? 'Hafez-e-Quran & Full-Stack Software Engineer'
-                  : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার'}
+                  ? 'Hafez-e-Quran & Full-Stack Software Engineer • Islamic Tech Innovator'
+                  : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার • ইসলামিক ডিজিটাল সলিউশন নির্মাতা'}
               </p>
 
-              {/* Minimal Spiritual Quote */}
-              <p className="text-[11.5px] text-amber-300/95 font-arabic italic mt-2 bg-white/[0.04] px-3 py-1.5 rounded-xl border border-white/[0.08] inline-block leading-relaxed">
-                "الحمد لله على كل شيء — A person chosen by Allah, cannot be defeated by humans.!!"
+              {/* Spiritual Bio Quote */}
+              <div className="mt-2.5 p-2.5 rounded-2xl bg-black/30 border border-amber-400/20 text-left">
+                <p className="text-xs text-amber-200 font-arabic font-medium leading-relaxed">
+                  "الحمد لله على كل شيء — A person chosen by Allah, cannot be defeated by humans.!!"
+                </p>
+              </div>
+
+              {/* Rich Project Mission Details */}
+              <p className="text-xs text-gray-300 mt-2.5 leading-relaxed">
+                {isEn
+                  ? 'Dedicated to crafting authentic, ultra-realistic, ad-free Islamic applications with modern web & cloud technologies to serve the global Muslim Ummah in Quran Hifz and recitation.'
+                  : 'মুসলিম উম্মাহর কুরআন হিফজ, নিয়মিত তিলাওয়াত ও অনুশীলনের সুবিধার্থে আধুনিক ক্লাউড ও ওয়েব প্রযুক্তির সমন্বয়ে বিজ্ঞাপনমুক্ত নির্ভরযোগ্য ইসলামিক সফটওয়্যার তৈরিতে নিবেদিত।'}
               </p>
             </div>
           </div>
 
-          {/* Social Profiles Minimal Grid */}
-          <div className="space-y-2.5">
-            <div className="flex items-center justify-between px-1">
-              <span className="text-[11px] uppercase tracking-wider font-bold text-gray-400">
-                {isEn ? 'Connect & Follow' : 'সোশ্যাল মিডিয়া প্রোফাইল'}
-              </span>
-              <span className="text-[11px] text-emerald-400 font-medium">
-                {isEn ? '6 Official Channels' : '৬টি অফিসিয়াল লিংক'}
+          {/* Social Profiles Grid (Spacious 2/3 Column Bento) */}
+          <div>
+            <div className="flex items-center justify-between mb-3 px-1">
+              <h4 className="text-xs sm:text-sm font-bold text-amber-300 uppercase tracking-wider flex items-center gap-2">
+                <Share2 className="w-4 h-4 text-emerald-400" />
+                <span>{isEn ? 'Official Social Media & Profiles' : 'অফিসিয়াল সোশ্যাল মিডিয়া ও প্রোফাইল'}</span>
+              </h4>
+              <span className="text-[11px] text-emerald-400/90 font-medium">
+                {isEn ? '6 Channels' : '৬টি লিংক'}
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
               {socialLinks.map((item, idx) => {
-                const Icon = item.icon;
+                const IconComponent = item.icon;
                 return (
                   <a
                     key={idx}
@@ -224,21 +264,24 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => sfx.playGoldenClick()}
-                    className={`group p-3 rounded-2xl bg-white/[0.04] border border-white/[0.08] transition-all duration-200 flex flex-col justify-between hover:scale-[1.03] active:scale-95 shadow-sm backdrop-blur-md ${item.theme}`}
+                    className={`p-3 rounded-2xl border border-emerald-600/30 transition-all duration-200 flex items-center justify-between group hover:scale-[1.02] active:scale-95 shadow-md ${item.theme}`}
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="w-7 h-7 rounded-xl bg-white/10 flex items-center justify-center text-amber-300 group-hover:text-white transition-colors">
-                        <Icon className="w-4 h-4" />
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center shrink-0 border border-white/10 group-hover:scale-110 transition-transform">
+                        <IconComponent className="w-4 h-4 text-amber-300" />
                       </div>
-                      <ArrowUpRight className="w-3.5 h-3.5 text-gray-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                      <div className="min-w-0">
+                        <div className="text-xs font-bold text-white group-hover:text-amber-200 transition-colors truncate">
+                          {item.name}
+                        </div>
+                        <div className="text-[11px] text-gray-300 truncate font-mono">{item.handle}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-xs font-bold text-white group-hover:text-amber-200 transition-colors truncate">
-                        {item.name}
-                      </div>
-                      <div className="text-[10px] text-gray-400 truncate font-mono mt-0.5">
-                        {item.handle}
-                      </div>
+                    <div className="flex items-center gap-1 shrink-0 ml-1.5">
+                      <span className="text-[9px] px-1.5 py-0.5 rounded-md bg-white/10 text-emerald-300 font-semibold border border-white/5">
+                        {item.badge}
+                      </span>
+                      <ExternalLink className="w-3 h-3 text-gray-400 group-hover:text-white transition-colors" />
                     </div>
                   </a>
                 );
@@ -246,70 +289,80 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
             </div>
           </div>
 
-          {/* Clean Rounded Email Card */}
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-emerald-500/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="flex items-center gap-3 min-w-0 w-full sm:w-auto">
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center shrink-0 text-emerald-300">
-                <Mail className="w-4 h-4" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <div className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">
-                  {isEn ? 'Direct Inquiries' : 'সরাসরি ইমেইল'}
+          {/* Direct Communication & Contact Email */}
+          <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 space-y-2.5 shadow-md">
+            <h4 className="text-xs font-bold text-emerald-300 uppercase tracking-wider flex items-center gap-2">
+              <Mail className="w-4 h-4 text-amber-300" />
+              <span>{isEn ? 'Direct Contact & Inquiries' : 'সরাসরি যোগাযোগ ও মতামত'}</span>
+            </h4>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 shrink-0">
+                  <Mail className="w-4 h-4" />
                 </div>
-                <div className="text-xs sm:text-sm font-bold text-white truncate select-all">
-                  {developerEmail}
+                <div className="min-w-0">
+                  <div className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">
+                    {isEn ? 'Official Email' : 'অফিসিয়াল ইমেইল'}
+                  </div>
+                  <span className="text-xs sm:text-sm font-bold text-white select-all truncate font-mono">
+                    {developerEmail}
+                  </span>
                 </div>
               </div>
-            </div>
-
-            <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
-              <button
-                onClick={handleCopyEmail}
-                className="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md cursor-pointer active:scale-95"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-3.5 h-3.5 text-amber-300" />
-                    <span>{isEn ? 'Copied' : 'কপি হয়েছে'}</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>{isEn ? 'Copy' : 'কপি'}</span>
-                  </>
-                )}
-              </button>
-              
-              <a
-                href={`mailto:${developerEmail}`}
-                className="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-white/10 cursor-pointer active:scale-95"
-              >
-                <ExternalLink className="w-3.5 h-3.5 text-gray-300" />
-                <span>{isEn ? 'Email' : 'পাঠান'}</span>
-              </a>
+              <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
+                <button
+                  onClick={handleCopyEmail}
+                  className="flex-1 sm:flex-initial px-3.5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow cursor-pointer active:scale-95 border border-emerald-500/50"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5 text-amber-300" />
+                      <span>{isEn ? 'Copied!' : 'কপি হয়েছে!'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>{isEn ? 'Copy Email' : 'ইমেইল কপি করুন'}</span>
+                    </>
+                  )}
+                </button>
+                <a
+                  href={`mailto:${developerEmail}`}
+                  className="flex-1 sm:flex-initial px-3.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-emerald-200 hover:text-white text-xs font-bold transition-all flex items-center justify-center gap-1 border border-white/10 cursor-pointer active:scale-95"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>{isEn ? 'Send Email' : 'ইমেইল পাঠান'}</span>
+                </a>
+              </div>
             </div>
           </div>
 
-          {/* Minimal Sadaqah Jariyah Footer Pill */}
-          <div className="flex items-center justify-center gap-2 p-3 rounded-2xl bg-emerald-950/50 border border-amber-400/20 text-center">
-            <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400 shrink-0" />
-            <p className="text-[11px] text-emerald-100/90 leading-tight">
+          {/* Project Mission & Sadaqah Jariyah Dedication */}
+          <div className="text-center p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950/80 via-emerald-900/50 to-emerald-950/80 border border-amber-400/30 shadow-md">
+            <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-amber-300 mb-1">
+              <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400" />
+              <span>{isEn ? 'Dedicated as Sadaqah Jariyah' : 'সদকায়ে জারিয়া হিসেবে উৎসর্গীকৃত'}</span>
+            </div>
+            <p className="text-[11.5px] text-emerald-100/90 leading-relaxed max-w-xl mx-auto">
               {isEn
-                ? 'Dedicated as Sadaqah Jariyah — Please remember in your sincere prayers.'
-                : 'সদকায়ে জারিয়া হিসেবে উৎসর্গীকৃত — আপনার মূল্যবান তিলাওয়াত ও দোয়ায় স্মরণ রাখবেন।'}
+                ? 'Please remember the developer, his parents, teachers, and the entire Muslim Ummah in your sincere prayers and Dua during recitation.'
+                : 'আপনার মূল্যবান কুরআন তিলাওয়াত ও আন্তরিক দোয়ায় ডেভেলপার, তার পিতা-মাতা, শিক্ষকবৃন্দ এবং সমগ্র মুসলিম উম্মাহকে শামিল রাখার বিনীত অনুরোধ রইল।'}
             </p>
           </div>
 
         </div>
 
-        {/* Ultra-Minimal Bottom Bar */}
-        <div className="px-7 py-3.5 bg-black/40 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-gray-400">
-          <span>15 Lines Noorani Hafezi Quran</span>
+        {/* Footer Bar */}
+        <div className="relative z-10 px-6 sm:px-7 py-3.5 bg-[#020e06] border-t border-emerald-900/80 flex items-center justify-between">
+          <span className="text-[11px] text-emerald-400/80 font-medium">
+            15 Lines Noorani Hafezi Quran Sharif v1.0
+          </span>
           <button
             onClick={onClose}
-            className="text-emerald-400 hover:text-emerald-300 font-semibold cursor-pointer transition-colors"
+            className="px-5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 border border-emerald-500/50"
           >
-            {isEn ? 'Done' : 'ঠিক আছে'}
+            {isEn ? 'Close' : 'বন্ধ করুন'}
           </button>
         </div>
 
