@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { sfx } from '../utils/sfxService';
 
-// Minimal Sleek Brand Icons
+// Official Minimalist Brand Icons
 const XTwitterIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -121,7 +121,7 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center p-3.5 sm:p-6 select-none overflow-y-auto ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 select-none overflow-y-auto ${
         isEn ? 'font-sans' : 'font-bengali'
       }`}
     >
@@ -131,11 +131,11 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
         onClick={onClose}
       />
 
-      {/* Main Bento Modal */}
-      <div className="relative w-full max-w-xl bg-gradient-to-b from-[#0a1f13] via-[#05140b] to-[#020b06] rounded-[36px] shadow-[0_30px_90px_rgba(0,0,0,0.95)] border border-emerald-500/20 text-white overflow-hidden animate-in zoom-in-95 duration-250 my-auto">
+      {/* Main Luxury Rounded Bento Modal */}
+      <div className="relative w-full max-w-xl bg-gradient-to-b from-[#081f12] via-[#04140b] to-[#010905] rounded-[36px] shadow-[0_30px_90px_rgba(0,0,0,0.95)] border border-emerald-500/25 text-white overflow-hidden animate-in zoom-in-95 duration-250 my-auto">
         
         {/* Soft Ambient Radiance Top */}
-        <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-emerald-500/20 via-emerald-600/5 to-transparent pointer-events-none rounded-t-[36px]" />
+        <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-emerald-500/25 via-emerald-600/5 to-transparent pointer-events-none rounded-t-[36px]" />
         
         {/* Close Button Top-Right Minimal */}
         <button
@@ -147,7 +147,7 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
         </button>
 
         {/* Modal Content */}
-        <div className="relative z-10 p-6 sm:p-8 space-y-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
+        <div className="relative z-10 p-6 sm:p-8 space-y-5 max-h-[85vh] overflow-y-auto custom-scrollbar">
           
           {/* Hero Profile Header (Circular Minimal Avatar with Glowing Aura) */}
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 pt-1">
@@ -181,7 +181,7 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
 
             {/* Profile Intro Info */}
             <div className="text-center sm:text-left flex-1 min-w-0">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/25 text-emerald-300 text-[11px] font-semibold tracking-wide mb-2">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[11px] font-semibold tracking-wide mb-1.5">
                 <Sparkles className="w-3 h-3 text-amber-300" />
                 <span>{isEn ? 'Initiator & Lead Developer' : 'উদ্যোক্তা ও প্রধান ডেভেলপার'}</span>
               </div>
@@ -190,21 +190,21 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
                 {isEn ? 'Hafiz Md. Moinul Islam' : 'হাফেজ মোঃ মঈনুল ইসলাম'}
               </h2>
               
-              <p className="text-xs sm:text-sm text-emerald-200/80 font-medium mt-1">
+              <p className="text-xs sm:text-sm text-emerald-200/85 font-medium mt-1">
                 {isEn
                   ? 'Hafez-e-Quran & Full-Stack Software Engineer'
                   : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার'}
               </p>
 
               {/* Minimal Spiritual Quote */}
-              <p className="text-[12px] text-amber-300/90 font-arabic italic mt-2 bg-white/[0.03] px-3 py-1.5 rounded-xl border border-white/[0.06] inline-block leading-relaxed">
+              <p className="text-[11.5px] text-amber-300/95 font-arabic italic mt-2 bg-white/[0.04] px-3 py-1.5 rounded-xl border border-white/[0.08] inline-block leading-relaxed">
                 "الحمد لله على كل شيء — A person chosen by Allah, cannot be defeated by humans.!!"
               </p>
             </div>
           </div>
 
           {/* Social Profiles Minimal Grid */}
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             <div className="flex items-center justify-between px-1">
               <span className="text-[11px] uppercase tracking-wider font-bold text-gray-400">
                 {isEn ? 'Connect & Follow' : 'সোশ্যাল মিডিয়া প্রোফাইল'}
