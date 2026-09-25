@@ -1,0 +1,17 @@
+{
+  "name": "হাফেজী কোরআন শরীফ (১৫ লাইন)",
+  "short_name": "হাফেজী কোরআন",
+  "description": "১৫ লাইনের নূরানী হাফেজী কোরআন শরীফ ডিজিটাল সংস্করণ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1b5e20",
+  "theme_color": "#1b5e20",
+  "icons": [
+    {
+      "src": "/quran-icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <rect width="100" height="100" rx="20" fill="#1b5e20"/>
+  <circle cx="50" cy="50" r="42" fill="none" stroke="#d4af37" stroke-width="2" stroke-dasharray="3,3"/>
+  <path d="M50 20 L78 35 L78 65 L50 80 L22 65 L22 35 Z" fill="#123d15" stroke="#d4af37" stroke-width="2"/>
+  <!-- Rehal / Book outline -->
+  <path d="M30 40 Q50 35 50 60 Q50 35 70 40 L70 65 Q50 60 50 80 Q50 60 30 65 Z" fill="#fcf8eb" stroke="#d4af37" stroke-width="1.5"/>
+  <line x1="50" y1="36" x2="50" y2="78" stroke="#1b5e20" stroke-width="1.5"/>
+  <!-- Gold crescent / star decoration -->
+  <path d="M47 30 A5 5 0 1 0 53 30 A4 4 0 1 1 47 30" fill="#d4af37"/>
+</svg>

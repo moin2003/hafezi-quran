@@ -1,0 +1,259 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+}
+
+/* Motion Pause Mode */
+.motion-paused,
+.motion-paused * {
+  animation-play-state: paused !important;
+}
+
+/* Custom Quran Paper Textures and Styling */
+.quran-page-shadow {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.15), 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.dark .quran-page-shadow {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.book-spine-left {
+  box-shadow: inset -15px 0 20px -10px rgba(0, 0, 0, 0.18);
+}
+
+.book-spine-right {
+  box-shadow: inset 15px 0 20px -10px rgba(0, 0, 0, 0.18);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
+}
+
+/* Quran border frame decoration */
+.quran-frame {
+  border: 2px solid #c59d5f;
+  outline: 1px dashed rgba(197, 157, 95, 0.4);
+  outline-offset: 3px;
+}
+
+@keyframes floatUpInfinite {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+}
+
+@keyframes floatDownInfinite {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes ripplePulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmerGlow {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.03);
+  }
+}
+
+@keyframes twinkleStar {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
+  }
+}
+
+.animate-float-up-1 {
+  animation: floatUpInfinite 18s linear infinite;
+}
+.animate-float-up-2 {
+  animation: floatUpInfinite 22s linear infinite 5s;
+}
+.animate-float-up-3 {
+  animation: floatUpInfinite 20s linear infinite 10s;
+}
+
+.animate-float-down-1 {
+  animation: floatDownInfinite 19s linear infinite;
+}
+.animate-float-down-2 {
+  animation: floatDownInfinite 23s linear infinite 6s;
+}
+.animate-float-down-3 {
+  animation: floatDownInfinite 21s linear infinite 11s;
+}
+
+@keyframes stripeScrollDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes stripeScrollUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-stripe-down {
+  animation: stripeScrollDown 35s linear infinite;
+}
+
+.animate-stripe-up {
+  animation: stripeScrollUp 35s linear infinite;
+}
+
+@keyframes slideMarquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide-marquee {
+  display: flex;
+  width: max-content;
+  animation: slideMarquee 22s linear infinite;
+}
+
+@keyframes floatHorizontalFade {
+  0% {
+    transform: translateX(-15px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(15px);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateX(-15px);
+    opacity: 0.5;
+  }
+}
+
+.animate-horizontal-drift {
+  animation: floatHorizontalFade 6s ease-in-out infinite;
+}
+
+.animate-ripple-1 {
+  animation: ripplePulse 4s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+.animate-ripple-2 {
+  animation: ripplePulse 4s cubic-bezier(0.2, 0.8, 0.4, 1) infinite 2s;
+}
+
+.animate-float-gentle {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-shimmer-text {
+  background-size: 200% auto;
+  animation: shimmerGlow 6s linear infinite;
+}
+
+.animate-twinkle-1 {
+  animation: twinkleStar 3s ease-in-out infinite;
+}
+.animate-twinkle-2 {
+  animation: twinkleStar 4s ease-in-out infinite 1.5s;
+}
+.animate-twinkle-3 {
+  animation: twinkleStar 3.5s ease-in-out infinite 0.7s;
+}
+
+@keyframes playerSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-player-in {
+  animation: playerSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
