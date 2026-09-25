@@ -700,10 +700,10 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
       )}
 
       {/* ========================================================
-          DESKTOP / TABLET FLOATING TOOL DOCK (Hidden on Mobile)
+          FLOATING TOOL DOCK (Mobile & Desktop)
       ======================================================== */}
-      {!isMobileScreen && !isZenMode && (
-        <div className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-35 flex flex-col items-center gap-2 max-w-[96vw]">
+      {!isZenMode && (
+        <div className="fixed bottom-2.5 sm:bottom-5 left-1/2 -translate-x-1/2 z-35 flex flex-col items-center gap-2 max-w-[96vw]">
           {/* Slider Popover (Toggled by the Sliders button) */}
           {showSliderPopover && (
             <div className="p-3.5 sm:p-4 rounded-2xl bg-white/95 dark:bg-[#12161a]/95 backdrop-blur-xl border border-[#e5dec9] dark:border-[#2a323d] shadow-2xl flex flex-col gap-2.5 w-[90vw] max-w-sm mb-1 animate-in slide-in-from-bottom-2">
