@@ -678,13 +678,13 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
         <div className="fixed bottom-3 inset-x-3 max-w-sm mx-auto z-40">
           {/* Slider Popover on Mobile */}
           {showSliderPopover && (
-            <div className="p-4 rounded-3xl bg-white/95 dark:bg-[#0c1810]/95 backdrop-blur-2xl border border-emerald-500/40 shadow-[0_15px_50px_rgba(0,0,0,0.6)] flex flex-col gap-2.5 w-full mb-2 animate-in slide-in-from-bottom-2">
+            <div className="p-4 rounded-3xl bg-white/98 dark:bg-[#07170e]/98 backdrop-blur-2xl border border-emerald-500/35 shadow-[0_15px_50px_rgba(6,78,59,0.3)] flex flex-col gap-2.5 w-full mb-3 animate-in slide-in-from-bottom-2">
               <div className="flex items-center justify-between text-xs font-bold text-gray-800 dark:text-gray-200">
-                <span className="text-sm font-bold flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400">
-                  <Sliders className="w-4 h-4" />
+                <span className="text-sm font-black flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
+                  <Sliders className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span>{isEn ? 'Jump to Page' : 'পৃষ্ঠায় যান'}</span>
                 </span>
-                <span className="px-2.5 py-0.5 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-black text-sm">
+                <span className="px-2.5 py-0.5 rounded-lg bg-emerald-800 text-white font-black text-sm shadow-xs">
                   {isEn ? `${currentPage} / ${totalPages}` : `${toBanglaNumber(currentPage)} / ${toBanglaNumber(totalPages)}`}
                 </span>
                 <button
@@ -701,10 +701,10 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
                 max={totalPages}
                 value={currentPage}
                 onChange={(e) => changePage(parseInt(e.target.value, 10))}
-                className="w-full h-3 bg-emerald-100 dark:bg-emerald-950 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                className="w-full h-2.5 bg-emerald-100 dark:bg-emerald-950 rounded-lg appearance-none cursor-pointer accent-emerald-600"
               />
 
-              <div className="flex justify-between text-[11px] text-gray-500 font-bold px-1">
+              <div className="flex justify-between text-[11px] text-emerald-800 dark:text-emerald-300 font-bold px-1">
                 <span>{isEn ? '1 (Fatihah)' : '১ (ফাতিহা)'}</span>
                 <span>{isEn ? '300 (Kahf)' : '৩০০ (কাহাফ)'}</span>
                 <span>{isEn ? '611 (Nas)' : '৬১১ (নাস)'}</span>
@@ -750,7 +750,7 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
             })()}
 
             {/* 3. Center Elevated Action: Circular Audio Recitation Halo Button (Reference Style) */}
-            <div className="relative -mt-4 flex flex-col items-center">
+            <div className="relative -mt-3.5 flex flex-col items-center">
               {/* Concentric Halo Ring */}
               <div className="p-1 rounded-full bg-white/95 dark:bg-[#07170e]/95 shadow-md border border-emerald-500/25">
                 <button
@@ -759,17 +759,17 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
                     if (onPlayPageAudio) onPlayPageAudio(currentPage);
                     else onToggleAudio?.();
                   }}
-                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-[0_6px_20px_rgba(16,185,129,0.5)] transition-all active:scale-90 cursor-pointer ${
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-[0_6px_20px_rgba(6,78,59,0.45)] transition-all active:scale-90 cursor-pointer ${
                     isAudioPlaying && audioPlayingPage === currentPage
-                      ? 'bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-400 ring-4 ring-emerald-400/40 animate-pulse'
+                      ? 'bg-gradient-to-tr from-emerald-700 via-emerald-600 to-emerald-500 ring-4 ring-emerald-500/40 animate-pulse'
                       : 'bg-gradient-to-tr from-emerald-800 via-emerald-700 to-emerald-600 hover:scale-105'
                   }`}
-                  title={isEn ? 'Play Audio Recitation' : 'অডিও তিলাওয়াত শুনুন'}
+                  title={isEn ? (isAudioPlaying ? 'Pause Recitation' : 'Play Recitation') : (isAudioPlaying ? 'পজ করুন' : 'অডিও শুনুন')}
                 >
                   {isAudioPlaying && audioPlayingPage === currentPage ? (
-                    <Pause className="w-5 h-5 fill-current" />
+                    <Pause className="w-5 h-5 fill-white text-white" />
                   ) : (
-                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                    <Play className="w-5 h-5 fill-white text-white ml-0.5" />
                   )}
                 </button>
               </div>
@@ -807,20 +807,20 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
       ======================================================== */}
       {!isMobileScreen && !isZenMode && (
         <div className="fixed bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-35 flex flex-col items-center gap-2 max-w-[96vw]">
-          {/* Slider Popover */}
+          {/* Slider Popover on Desktop */}
           {showSliderPopover && (
-            <div className="p-3.5 sm:p-4 rounded-2xl bg-white/95 dark:bg-[#12161a]/95 backdrop-blur-xl border border-[#e5dec9] dark:border-[#2a323d] shadow-2xl flex flex-col gap-2.5 w-[90vw] max-w-sm mb-1 animate-in slide-in-from-bottom-2">
-              <div className="flex items-center justify-between text-xs font-bold text-gray-700 dark:text-gray-300">
-                <span className="text-sm font-bold flex items-center gap-1.5">
-                  <Sliders className="w-4 h-4 text-emerald-600" />
+            <div className="p-4 rounded-3xl bg-white/98 dark:bg-[#07170e]/98 backdrop-blur-2xl border border-emerald-500/35 shadow-[0_15px_50px_rgba(6,78,59,0.3)] flex flex-col gap-2.5 w-[90vw] max-w-sm mb-1 animate-in slide-in-from-bottom-2">
+              <div className="flex items-center justify-between text-xs font-bold text-gray-800 dark:text-gray-200">
+                <span className="text-sm font-black flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400">
+                  <Sliders className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   <span>{isEn ? 'Jump to Page' : 'পৃষ্ঠায় যান'}</span>
                 </span>
-                <span className="px-2.5 py-0.5 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-extrabold text-sm">
+                <span className="px-2.5 py-0.5 rounded-lg bg-emerald-800 text-white font-black text-sm shadow-xs">
                   {isEn ? `${currentPage} / ${totalPages}` : `${toBanglaNumber(currentPage)} / ${toBanglaNumber(totalPages)}`}
                 </span>
                 <button
                   onClick={() => setShowSliderPopover(false)}
-                  className="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
+                  className="p-1 rounded-full text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -832,10 +832,10 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
                 max={totalPages}
                 value={currentPage}
                 onChange={(e) => changePage(parseInt(e.target.value, 10))}
-                className="w-full h-2.5 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                className="w-full h-2.5 bg-emerald-100 dark:bg-emerald-950 rounded-lg appearance-none cursor-pointer accent-emerald-600"
               />
 
-              <div className="flex justify-between text-[11px] text-gray-500 font-bold px-0.5">
+              <div className="flex justify-between text-[11px] text-emerald-800 dark:text-emerald-300 font-bold px-1">
                 <span>{isEn ? '1 (Fatihah)' : '১ (ফাতিহা)'}</span>
                 <span>{isEn ? '300 (Kahf)' : '৩০০ (কাহাফ)'}</span>
                 <span>{isEn ? '611 (Nas)' : '৬১১ (নাস)'}</span>
@@ -843,45 +843,45 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
             </div>
           )}
 
-          {/* Floating Actions Pill Dock on Desktop */}
-          <div className="flex items-center gap-1 sm:gap-1.5 p-1.5 sm:p-2 rounded-2xl bg-white/95 dark:bg-[#12161a]/95 backdrop-blur-xl border border-[#e5dec9] dark:border-[#2a323d] shadow-[0_10px_35px_rgba(0,0,0,0.25)]">
-            {/* Previous Page (RTL) */}
+          {/* Floating Luxury Actions Pill Dock on Desktop */}
+          <div className="flex items-center gap-1.5 p-2 rounded-full bg-white/98 dark:bg-[#07170e]/98 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_12px_45px_rgba(6,78,59,0.25)]">
+            {/* Previous Page */}
             <button
               onClick={() => {
                 if (effectiveMode === 'book') changePage(Math.max(1, rightPage - 2));
                 else changePage(Math.max(1, currentPage - 1));
               }}
               disabled={currentPage <= 1}
-              className="p-2 sm:p-2.5 rounded-xl text-emerald-800 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+              className="w-9 h-9 rounded-full flex items-center justify-center text-emerald-800 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 disabled:opacity-25 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer"
               title={isEn ? 'Previous Page' : 'পূর্বের পৃষ্ঠা'}
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
 
             {/* Page Slider Popover Trigger */}
             <button
               onClick={() => setShowSliderPopover(!showSliderPopover)}
-              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-900 dark:text-emerald-200 text-xs sm:text-sm font-extrabold flex items-center gap-1.5 hover:bg-emerald-100 transition-all cursor-pointer"
+              className="px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-500/25 text-emerald-900 dark:text-emerald-200 text-xs sm:text-sm font-black flex items-center gap-1.5 hover:bg-emerald-100 transition-all cursor-pointer"
               title={isEn ? 'Page Slider & Dial' : 'পৃষ্ঠা ডায়াল ও স্লাইডার'}
             >
-              <Sliders className="w-3.5 h-3.5 text-emerald-600" />
-              <span>{isEn ? `P. ${currentPage}` : `পৃ. ${toBanglaNumber(currentPage)}`}</span>
+              <Sliders className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <span>{isEn ? `P. ${currentPage} / ${totalPages}` : `পৃ. ${toBanglaNumber(currentPage)} / ${toBanglaNumber(totalPages)}`}</span>
             </button>
 
-            {/* Next Page (RTL) */}
+            {/* Next Page */}
             <button
               onClick={() => {
                 if (effectiveMode === 'book') changePage(Math.min(totalPages, rightPage + 2));
                 else changePage(Math.min(totalPages, currentPage + 1));
               }}
               disabled={currentPage >= totalPages}
-              className="p-2 sm:p-2.5 rounded-xl text-emerald-800 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 disabled:opacity-30 disabled:pointer-events-none transition-all cursor-pointer"
+              className="w-9 h-9 rounded-full flex items-center justify-center text-emerald-800 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 disabled:opacity-25 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer"
               title={isEn ? 'Next Page' : 'পরবর্তী পৃষ্ঠা'}
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronRight className="w-5 h-5" />
             </button>
 
-            <div className="w-px h-5 sm:h-6 bg-gray-200 dark:bg-gray-700 mx-0.5 sm:mx-1"></div>
+            <div className="w-px h-6 bg-emerald-500/20 mx-1"></div>
 
             {/* Audio Recitation Dock Quick Toggle / Play Button */}
             <button
@@ -889,25 +889,29 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
                 if (onPlayPageAudio) onPlayPageAudio(currentPage);
                 else onToggleAudio?.();
               }}
-              className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-xs ${
+              className={`px-3 py-1.5 rounded-full font-bold text-xs flex items-center gap-1.5 transition-all cursor-pointer shadow-xs ${
                 isAudioPlaying
-                  ? 'bg-emerald-600 text-white shadow-md ring-2 ring-emerald-400/50 animate-pulse'
-                  : 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 border border-emerald-200 dark:border-emerald-800'
+                  ? 'bg-emerald-700 text-white shadow-md ring-2 ring-emerald-400/50 animate-pulse'
+                  : 'bg-emerald-50 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-200 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 border border-emerald-500/25'
               }`}
-              title={isEn ? 'Play Audio Recitation' : 'অডিও তিলাওয়াত শুনুন'}
+              title={isEn ? (isAudioPlaying ? 'Pause Recitation' : 'Play Recitation') : (isAudioPlaying ? 'পজ করুন' : 'অডিও তিলাওয়াত শুনুন')}
             >
-              <Headphones className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-300" />
+              {isAudioPlaying ? (
+                <Pause className="w-3.5 h-3.5 fill-current" />
+              ) : (
+                <Headphones className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              )}
               <span className="hidden xs:inline">{isAudioPlaying ? (isEn ? 'Playing' : 'চলছে') : (isEn ? 'Audio' : 'অডিও')}</span>
             </button>
 
             {/* Desktop Only Extra Tools: Zoom, Height Fit, Mode switch */}
-            <div className="hidden sm:flex items-center gap-1">
-              <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-1"></div>
+            <div className="hidden sm:flex items-center gap-1.5">
+              <div className="w-px h-6 bg-emerald-500/20 mx-0.5"></div>
 
               {/* Fit Screen Height Toggle */}
               <button
                 onClick={() => setFitHeight(!fitHeight)}
-                className={`p-2 rounded-xl transition-all cursor-pointer ${
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer ${
                   fitHeight
                     ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-200'
                     : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -917,40 +921,43 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
                 <Maximize className="w-4 h-4" />
               </button>
 
-              {/* Zoom Controls */}
-              <button
-                onClick={handleZoomOut}
-                className="p-1.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
-                title={isEn ? 'Zoom Out' : 'জুম কমান'}
-              >
-                <ZoomOut className="w-4 h-4" />
-              </button>
+              {/* Zoom Controls Pill */}
+              <div className="flex items-center rounded-full bg-emerald-50/70 dark:bg-emerald-950/50 border border-emerald-500/20 px-1 py-0.5">
+                <button
+                  onClick={handleZoomOut}
+                  className="p-1 rounded-full text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 cursor-pointer"
+                  title={isEn ? 'Zoom Out' : 'জুম কমান'}
+                >
+                  <ZoomOut className="w-3.5 h-3.5" />
+                </button>
 
-              <button
-                onClick={handleZoomReset}
-                className="px-1 text-xs font-bold text-gray-700 dark:text-gray-300 hover:text-emerald-600 cursor-pointer"
-                title={isEn ? 'Reset Zoom' : 'রিসেট'}
-              >
-                {zoom}%
-              </button>
+                <button
+                  onClick={handleZoomReset}
+                  className="px-1.5 text-xs font-black text-emerald-900 dark:text-emerald-200 hover:text-emerald-700 cursor-pointer"
+                  title={isEn ? 'Reset Zoom' : 'রিসেট'}
+                >
+                  {zoom}%
+                </button>
 
-              <button
-                onClick={handleZoomIn}
-                className="p-1.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
-                title={isEn ? 'Zoom In' : 'জুম বাড়ান'}
-              >
-                <ZoomIn className="w-4 h-4" />
-              </button>
+                <button
+                  onClick={handleZoomIn}
+                  className="p-1 rounded-full text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 cursor-pointer"
+                  title={isEn ? 'Zoom In' : 'জুম বাড়ান'}
+                >
+                  <ZoomIn className="w-3.5 h-3.5" />
+                </button>
+              </div>
 
-              <div className="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-1"></div>
+              <div className="w-px h-6 bg-emerald-500/20 mx-0.5"></div>
 
-              {/* Mode Switch (Book / Single / Scroll) */}
+              {/* Mode Switch (Book / Single) */}
               <button
                 onClick={() => onChangeReadingMode(readingMode === 'book' ? 'single' : 'book')}
-                className="p-2 rounded-xl text-emerald-800 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 transition-all cursor-pointer"
+                className="px-2.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-500/25 text-emerald-800 dark:text-emerald-200 text-xs font-bold flex items-center gap-1 hover:bg-emerald-100 transition-all cursor-pointer"
                 title={readingMode === 'book' ? 'Single Page View' : 'Two-Page Book View'}
               >
                 {readingMode === 'book' ? <BookOpen className="w-4 h-4" /> : <Scroll className="w-4 h-4" />}
+                <span className="hidden md:inline">{readingMode === 'book' ? (isEn ? 'Book' : 'বই') : (isEn ? 'Single' : 'এক পাতা')}</span>
               </button>
             </div>
           </div>

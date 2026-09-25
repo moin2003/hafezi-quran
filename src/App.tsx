@@ -57,6 +57,7 @@ export const App: React.FC = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [audioPlayingPage, setAudioPlayingPage] = useState<number>(currentPage);
   const [playPageTrigger, setPlayPageTrigger] = useState<number | null>(null);
+  const [togglePlayTrigger, setTogglePlayTrigger] = useState<number>(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isZenMode, setIsZenMode] = useState(false);
 
@@ -143,6 +144,14 @@ export const App: React.FC = () => {
     setAudioPlayingPage(pageNumber);
     setPlayPageTrigger(pageNumber);
     setIsAudioOpen(true);
+  };
+
+  const handlePlayOrToggleAudio = (pageNumber: number) => {
+    if (!isAudioOpen || audioPlayingPage !== pageNumber) {
+      handlePlaySpecificPage(pageNumber);
+    } else {
+      setTogglePlayTrigger((prev) => prev + 1);
+    }
   };
 
   // 1. Cinematic Opening Splash Screen (Shown first, purely isolated)
@@ -247,7 +256,7 @@ export const App: React.FC = () => {
         onOpenSearch={() => setIsSearchOpen(true)}
         onOpenHome={() => setViewState('home')}
         onToggleAudio={() => setIsAudioOpen((prev) => !prev)}
-        onPlayPage={handlePlaySpecificPage}
+        onPlayPage={handlePlayOrToggleAudio}
       />
 
       {/* Main Quran Reader */}
@@ -268,7 +277,7 @@ export const App: React.FC = () => {
           setReadingMode(mode);
           saveSettings({ ...getSettings(), readingMode: mode });
         }}
-        onPlayPageAudio={handlePlaySpecificPage}
+        onPlayPageAudio={handlePlayOrToggleAudio}
         onToggleAudio={() => setIsAudioOpen((prev) => !prev)}
         onOpenBookmarkModal={handleOpenBookmarkForPage}
       />
@@ -282,6 +291,7 @@ export const App: React.FC = () => {
         isZenMode={isZenMode}
         lang={lang}
         playPageTrigger={playPageTrigger}
+        togglePlayTrigger={togglePlayTrigger}
         onPlayStateChange={(playing, page) => {
           setIsAudioPlaying(playing);
           setAudioPlayingPage(page);

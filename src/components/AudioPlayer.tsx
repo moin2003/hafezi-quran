@@ -33,6 +33,7 @@ interface AudioPlayerProps {
   onPageChange: (newPage: number) => void;
   onPlayStateChange?: (isPlaying: boolean, playingPage: number, reciterName: string) => void;
   playPageTrigger?: number | null; // Trigger to jump and play a specific page
+  togglePlayTrigger?: number; // Trigger to toggle play/pause from external buttons
 }
 
 export const AudioPlayer: React.FC<AudioPlayerProps> = ({
@@ -46,6 +47,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   onPageChange,
   onPlayStateChange,
   playPageTrigger,
+  togglePlayTrigger,
 }) => {
   const isEn = lang === 'en';
 
@@ -142,6 +144,13 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       loadPageAudio(playPageTrigger, selectedReciterId, true);
     }
   }, [playPageTrigger]);
+
+  // When external togglePlayTrigger fires (from bottom bar or header)
+  useEffect(() => {
+    if (togglePlayTrigger && togglePlayTrigger > 0) {
+      togglePlay();
+    }
+  }, [togglePlayTrigger]);
 
   // Handle Ayah Ended event
   const handleAyahEnded = () => {
@@ -340,7 +349,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       <div
         className={
           isMinimized
-            ? `fixed bottom-[88px] sm:bottom-6 left-3 right-3 sm:left-auto sm:right-6 max-w-sm sm:max-w-md mx-auto sm:mx-0 w-auto sm:w-[420px] z-45 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            ? `fixed bottom-[98px] sm:bottom-6 left-3 right-3 sm:left-auto sm:right-6 max-w-sm sm:max-w-md mx-auto sm:mx-0 w-auto sm:w-[420px] z-45 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isZenMode ? 'translate-y-28 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
               } ${isEn ? 'font-sans' : 'font-bengali'}`
             : `fixed bottom-0 inset-x-0 z-50 sm:bottom-6 sm:right-6 sm:inset-x-auto sm:w-[420px] max-h-[88vh] sm:max-h-[85vh] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -352,19 +361,19 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           /* ========================================================
              MINIMIZED FLOATING PILL (Solid Opaque Luxury Pill)
           ======================================================== */
-          <div className="relative bg-white/95 dark:bg-[#07170e]/95 backdrop-blur-2xl rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.35)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.85)] border border-emerald-500/30 p-1.5 sm:px-3 flex items-center justify-between gap-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-in fade-in zoom-in-95 overflow-hidden">
+          <div className="relative bg-white/98 dark:bg-[#07170e]/98 backdrop-blur-2xl rounded-full shadow-[0_12px_40px_rgba(6,78,59,0.25)] border border-emerald-500/35 p-1.5 sm:px-3 flex items-center justify-between gap-2.5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-in fade-in zoom-in-95 overflow-hidden">
             {/* Left: Wave Icon + Ayah title & Reciter (Click to Expand) */}
             <div
               onClick={() => setIsMinimized(false)}
               className="flex items-center gap-2.5 min-w-0 cursor-pointer flex-1 pl-1"
               title={isEn ? 'Click to expand player' : 'প্লেয়ার বড় করতে ক্লিক করুন'}
             >
-              <div className="w-8.5 h-8.5 rounded-full bg-gradient-to-tr from-emerald-800 via-emerald-700 to-emerald-600 text-white flex items-center justify-center shrink-0 shadow-sm relative">
+              <div className="w-9 h-9 rounded-full bg-emerald-800 text-white flex items-center justify-center shrink-0 shadow-sm relative">
                 {isPlaying ? (
-                  <div className="flex items-center gap-0.5 h-3 px-1">
+                  <div className="flex items-center gap-0.5 h-3.5 px-1">
                     <span className="w-0.5 h-2 bg-amber-300 rounded-full animate-bounce [animation-delay:-0.3s]" />
-                    <span className="w-0.5 h-3 bg-amber-300 rounded-full animate-bounce [animation-delay:-0.15s]" />
-                    <span className="w-0.5 h-2 bg-amber-300 rounded-full animate-bounce" />
+                    <span className="w-0.5 h-3.5 bg-amber-300 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-0.5 h-2.5 bg-amber-300 rounded-full animate-bounce" />
                   </div>
                 ) : (
                   <Headphones className="w-4 h-4 text-amber-300" />
@@ -375,7 +384,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
                   {currentAyah ? (
                     <>
                       <span className="truncate">{isEn ? currentAyah.surahName_en : currentAyah.surahName_bn}</span>
-                      <span className="text-emerald-600 dark:text-emerald-400 font-black shrink-0">
+                      <span className="text-emerald-700 dark:text-emerald-400 font-black shrink-0">
                         {isEn ? `:${currentAyah.numberInSurah}` : `:${toBanglaNumber(currentAyah.numberInSurah)}`}
                       </span>
                     </>
@@ -394,29 +403,29 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               <button
                 onClick={togglePlay}
                 disabled={isLoading}
-                className="w-8.5 h-8.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center shadow-xs cursor-pointer transition-transform active:scale-90"
+                className="w-9 h-9 rounded-full bg-emerald-700 hover:bg-emerald-800 text-white flex items-center justify-center shadow-xs cursor-pointer transition-transform active:scale-95 shrink-0"
                 title={isPlaying ? (isEn ? 'Pause' : 'পজ') : (isEn ? 'Play' : 'প্লে')}
               >
                 {isLoading ? (
-                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  <Loader2 className="w-4 h-4 animate-spin" />
                 ) : isPlaying ? (
-                  <Pause className="w-3.5 h-3.5 fill-white" />
+                  <Pause className="w-4 h-4 fill-white text-white" />
                 ) : (
-                  <Play className="w-3.5 h-3.5 fill-white ml-0.5" />
+                  <Play className="w-4 h-4 fill-white text-white ml-0.5" />
                 )}
               </button>
 
               <button
                 onClick={() => setIsMinimized(false)}
-                className="p-1.5 rounded-full text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 transition-colors cursor-pointer shrink-0"
                 title={isEn ? 'Expand Player' : 'প্লেয়ার বড় করুন'}
               >
-                <ChevronUp className="w-4 h-4" />
+                <ChevronUp className="w-4.5 h-4.5" />
               </button>
 
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-full text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/60 transition-colors cursor-pointer shrink-0"
                 title={isEn ? 'Close Player' : 'বন্ধ করুন'}
               >
                 <X className="w-4 h-4" />
@@ -427,7 +436,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             {duration > 0 && (
               <div className="absolute bottom-0 inset-x-4 h-0.5 bg-emerald-100 dark:bg-emerald-950/60 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-emerald-500 transition-all duration-200"
+                  className="h-full bg-emerald-600 transition-all duration-200"
                   style={{ width: `${Math.min(100, (currentTime / duration) * 100)}%` }}
                 />
               </div>
