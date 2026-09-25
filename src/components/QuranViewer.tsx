@@ -712,20 +712,21 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
             </div>
           )}
 
-          {/* Floating Mobile App Bar with Centered Play Button */}
-          <div className="relative rounded-full bg-white/95 dark:bg-[#07170e]/95 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.5)] px-3 py-1.5 flex items-center justify-between">
+          {/* Floating Mobile App Bar (Luxury Modern 5-Item Pill Dock with Elevated Halo Button) */}
+          <div className="relative rounded-3xl bg-white/95 dark:bg-[#07170e]/95 backdrop-blur-2xl border border-emerald-500/25 shadow-[0_12px_45px_rgba(0,0,0,0.35)] dark:shadow-[0_12px_45px_rgba(0,0,0,0.85)] px-2 py-1.5 flex items-center justify-around">
             
-            {/* Left Action: Previous Page (Page 2 -> Page 1) */}
+            {/* 1. Left Action: Previous Page (Page 2 -> Page 1) */}
             <button
               onClick={() => changePage(currentPage - 1)}
               disabled={currentPage <= 1}
-              className="flex items-center justify-center w-10 h-10 rounded-full text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 disabled:opacity-20 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer"
+              className="flex flex-col items-center justify-center w-14 h-12 rounded-2xl text-gray-700 dark:text-gray-200 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/40 disabled:opacity-25 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer"
               title={isEn ? 'Previous Page' : 'পূর্ববর্তী পৃষ্ঠা'}
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
+              <span className="text-[10px] font-bold mt-0.5">{isEn ? 'Prev' : 'পূর্ব'}</span>
             </button>
 
-            {/* Bookmark / Save Action */}
+            {/* 2. Bookmark / Save Action */}
             {(() => {
               const isBookmarked = (bookmarks || []).some((b) => b.page === currentPage);
               return (
@@ -735,61 +736,66 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
                     sfx.playGoldenClick();
                     onOpenBookmarkModal?.(currentPage);
                   }}
-                  className={`flex items-center justify-center w-10 h-10 rounded-full transition-all active:scale-90 cursor-pointer ${
+                  className={`flex flex-col items-center justify-center w-14 h-12 rounded-2xl transition-all active:scale-90 cursor-pointer ${
                     isBookmarked
-                      ? 'bg-emerald-600 text-white shadow-md'
-                      : 'text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40'
+                      ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50/80 dark:bg-emerald-950/60 font-black'
+                      : 'text-gray-700 dark:text-gray-200 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/40 font-bold'
                   }`}
                   title={isEn ? 'Bookmark / Save Page' : 'পৃষ্ঠা সেভ / বুকমার্ক করুন'}
                 >
-                  <BookmarkIcon className={`w-5 h-5 ${isBookmarked ? 'fill-current' : ''}`} />
+                  <BookmarkIcon className={`w-5 h-5 ${isBookmarked ? 'fill-emerald-600 dark:fill-emerald-400 text-emerald-600 dark:text-emerald-400' : ''}`} />
+                  <span className="text-[10px] mt-0.5">{isBookmarked ? (isEn ? 'Saved' : 'সংরক্ষিত') : (isEn ? 'Save' : 'সেভ')}</span>
                 </button>
               );
             })()}
 
-            {/* Center Play / Pause Audio Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onPlayPageAudio) onPlayPageAudio(currentPage);
-                else onToggleAudio?.();
-              }}
-              className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-[0_6px_20px_rgba(16,185,129,0.5)] transition-all active:scale-90 cursor-pointer ${
-                isAudioPlaying && audioPlayingPage === currentPage
-                  ? 'bg-gradient-to-tr from-emerald-600 to-emerald-400 ring-4 ring-emerald-400/40 animate-pulse'
-                  : 'bg-gradient-to-tr from-emerald-700 via-emerald-600 to-amber-500 hover:scale-105'
-              }`}
-              title={isEn ? 'Play / Pause Recitation' : 'অডিও তিলাওয়াত শুনুন'}
-            >
-              {isAudioPlaying && audioPlayingPage === currentPage ? (
-                <Pause className="w-5 h-5 fill-current" />
-              ) : (
-                <Play className="w-5 h-5 fill-current ml-0.5" />
-              )}
-            </button>
+            {/* 3. Center Elevated Action: Circular Audio Recitation Halo Button (Reference Style) */}
+            <div className="relative -mt-6 flex flex-col items-center">
+              {/* Concentric Halo Ring */}
+              <div className="p-1 rounded-full bg-white/95 dark:bg-[#07170e]/95 shadow-md border border-emerald-500/20">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onPlayPageAudio) onPlayPageAudio(currentPage);
+                    else onToggleAudio?.();
+                  }}
+                  className={`w-13 h-13 rounded-full flex items-center justify-center text-white shadow-[0_8px_25px_rgba(16,185,129,0.55)] transition-all active:scale-90 cursor-pointer ${
+                    isAudioPlaying && audioPlayingPage === currentPage
+                      ? 'bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-400 ring-4 ring-emerald-400/40 animate-pulse'
+                      : 'bg-gradient-to-tr from-emerald-800 via-emerald-700 to-emerald-600 hover:scale-105'
+                  }`}
+                  title={isEn ? 'Play Audio Recitation' : 'অডিও তিলাওয়াত শুনুন'}
+                >
+                  {isAudioPlaying && audioPlayingPage === currentPage ? (
+                    <Pause className="w-5 h-5 fill-current" />
+                  ) : (
+                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                  )}
+                </button>
+              </div>
+            </div>
 
-            {/* Page Dial / Slider Trigger */}
+            {/* 4. Page Dial / Slider Trigger */}
             <button
               onClick={() => setShowSliderPopover(!showSliderPopover)}
-              className="flex flex-col items-center justify-center px-2.5 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300/60 dark:border-emerald-700/60 text-emerald-900 dark:text-emerald-200 transition-all active:scale-90 cursor-pointer"
+              className="flex flex-col items-center justify-center w-14 h-12 rounded-2xl text-gray-700 dark:text-gray-200 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/40 transition-all active:scale-90 cursor-pointer"
               title={isEn ? 'Page Slider' : 'পৃষ্ঠা স্লাইডার'}
             >
-              <span className="text-[9px] uppercase font-black text-emerald-600 dark:text-emerald-400 leading-none">
-                {isEn ? 'Page' : 'পৃষ্ঠা'}
-              </span>
-              <span className="text-xs font-black tracking-tight mt-0.5">
-                {isEn ? currentPage : toBanglaNumber(currentPage)}
+              <Sliders className="w-4.5 h-4.5 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-[10px] font-black mt-0.5 text-emerald-700 dark:text-emerald-300">
+                {isEn ? `P. ${currentPage}` : `পৃ. ${toBanglaNumber(currentPage)}`}
               </span>
             </button>
 
-            {/* Right Action: Next Page (Page 1 -> Page 2) */}
+            {/* 5. Right Action: Next Page (Page 1 -> Page 2) */}
             <button
               onClick={() => changePage(currentPage + 1)}
               disabled={currentPage >= totalPages}
-              className="flex items-center justify-center w-10 h-10 rounded-full text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 disabled:opacity-20 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer"
+              className="flex flex-col items-center justify-center w-14 h-12 rounded-2xl text-gray-700 dark:text-gray-200 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-50/70 dark:hover:bg-emerald-950/40 disabled:opacity-25 disabled:pointer-events-none transition-all active:scale-90 cursor-pointer"
               title={isEn ? 'Next Page' : 'পরবর্তী পৃষ্ঠা'}
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
+              <span className="text-[10px] font-bold mt-0.5">{isEn ? 'Next' : 'পরবর্তী'}</span>
             </button>
 
           </div>

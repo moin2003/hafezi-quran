@@ -326,7 +326,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           FLOATING AUDIO DOCK (Smooth Animated Fluid Glass Deck)
       ======================================================== */}
       <div
-        className={`fixed bottom-3 sm:bottom-6 right-2 sm:right-6 left-2 sm:left-auto z-45 max-w-[96vw] sm:max-w-md w-auto sm:w-[420px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-player-in ${
+        className={`fixed bottom-[78px] sm:bottom-6 right-2 sm:right-6 left-2 sm:left-auto z-45 max-w-[96vw] sm:max-w-md w-auto sm:w-[420px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-player-in ${
           isEn ? 'font-sans' : 'font-bengali'
         }`}
       >
@@ -334,7 +334,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           /* ========================================================
              MINIMIZED FLOATING PILL (Solid Opaque Luxury Pill)
           ======================================================== */
-          <div className="bg-white dark:bg-[#12161a] rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.35)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.85)] border border-[#e2d8bd] dark:border-[#2a3442] p-2 sm:px-3.5 flex items-center justify-between gap-2.5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-in fade-in zoom-in-95">
+          <div className="bg-white/95 dark:bg-[#12161a]/95 backdrop-blur-xl rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.35)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.85)] border border-emerald-500/30 dark:border-emerald-700/40 p-2 sm:px-3.5 flex items-center justify-between gap-2.5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-in fade-in zoom-in-95">
             {/* Left: Wave Icon + Ayah title */}
             <div
               onClick={() => setIsMinimized(false)}
