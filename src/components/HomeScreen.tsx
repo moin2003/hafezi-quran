@@ -10,7 +10,8 @@ import {
   Globe,
   Bookmark,
   Volume2,
-  VolumeX
+  VolumeX,
+  FileText,
 } from 'lucide-react';
 import { toBanglaNumber } from '../utils/helpers';
 import { QuranMetadata } from '../types';
@@ -26,6 +27,7 @@ interface HomeScreenProps {
   onOpenSearch: () => void;
   onOpenDrawer: () => void;
   onOpenAboutDeveloper?: () => void;
+  onOpenBlog?: () => void;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -37,6 +39,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onOpenSearch,
   onOpenDrawer,
   onOpenAboutDeveloper,
+  onOpenBlog,
 }) => {
   const [isMuted, setIsMuted] = useState(sfx.isMuted());
   const currentParaNum = Math.ceil(lastReadPage / 20);
@@ -97,6 +100,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       surahWaqiahP: 'পৃ. ৫৩৪',
       ammaPara: 'আম্মা পারা',
       ammaParaP: 'পৃ. ৫৮১',
+      cardBlogTitle: 'ইসলামিক ব্লগ',
+      cardBlogTag: 'নিবন্ধ ও গাইড',
+      cardBlogSub: 'তাফসির, হিফয ও কোরআনের জ্ঞান',
     },
     en: {
       searchPlaceholder: 'Search Page (1 - 611) or Surah...',
@@ -132,6 +138,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       surahWaqiahP: 'p. 534',
       ammaPara: 'Juz ‘Amma',
       ammaParaP: 'p. 581',
+      cardBlogTitle: 'Islamic Blog',
+      cardBlogTag: 'Articles & Guides',
+      cardBlogSub: 'Tafsir, Hifz & Quranic Knowledge',
     }
   }[lang];
 
@@ -336,6 +345,28 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
               <div className="mt-1.5 sm:mt-3 self-end w-6 h-6 xs:w-7 xs:h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-emerald-700/80 border border-emerald-500/50 text-emerald-200 flex items-center justify-center shadow-lg group-hover:translate-x-1 transition-all shrink-0">
                 <Layers className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-200" />
+              </div>
+            </div>
+
+            {/* Card 4: Islamic Blog */}
+            <div
+              onClick={() => { sfx.playGoldenClick(); onOpenBlog?.(); }}
+              className="col-span-2 sm:col-span-3 group p-2.5 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-900/80 to-emerald-950/90 hover:from-emerald-800/90 hover:to-emerald-900/95 border border-emerald-600/70 hover:border-amber-400/80 cursor-pointer transition-all duration-300 text-left shadow-xl hover:scale-[1.02] flex flex-row items-center justify-between min-h-[64px] sm:min-h-[80px]"
+            >
+              <div className="min-w-0 flex-1 pr-2">
+                <span className="inline-flex items-center gap-1 px-1.5 xs:px-2 py-0.5 rounded-md bg-emerald-800/90 text-amber-300 text-[9px] xs:text-[10px] sm:text-[11px] font-bold border border-emerald-600/60 mb-1 sm:mb-2 uppercase tracking-wider whitespace-nowrap">
+                  <FileText className="w-2.5 h-2.5 xs:w-3 xs:h-3 text-amber-300" />
+                  {t.cardBlogTag}
+                </span>
+                <div className="text-xs xs:text-sm sm:text-base font-bold text-white group-hover:text-amber-100 transition-colors leading-snug truncate">
+                  {t.cardBlogTitle}
+                </div>
+                <div className="text-[9px] xs:text-[11px] sm:text-sm text-emerald-300 font-normal mt-0.5 truncate">
+                  {t.cardBlogSub}
+                </div>
+              </div>
+              <div className="self-center w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 rounded-xl bg-emerald-600/90 border border-emerald-400/50 text-white flex items-center justify-center shadow-lg group-hover:translate-x-1 group-hover:bg-emerald-500 transition-all shrink-0">
+                <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-200" />
               </div>
             </div>
           </div>

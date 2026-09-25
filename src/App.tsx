@@ -11,6 +11,8 @@ import { AudioPlayer } from './components/AudioPlayer';
 import { SplashScreen } from './components/SplashScreen';
 import { HomeScreen } from './components/HomeScreen';
 import { AboutDeveloperModal } from './components/AboutDeveloperModal';
+import { BlogHome } from './components/BlogHome';
+import { BlogPost } from './components/BlogPost';
 import { getPageInfo } from './utils/helpers';
 import {
   getLastReadPage,
@@ -22,7 +24,7 @@ import {
   getTodayReadCount,
 } from './utils/storage';
 
-type ViewState = 'splash' | 'home' | 'reader';
+type ViewState = 'splash' | 'home' | 'reader' | 'blog' | 'blog-post';
 
 export const App: React.FC = () => {
   const [metadata, setMetadata] = useState<QuranMetadata | null>(null);
@@ -35,8 +37,9 @@ export const App: React.FC = () => {
   // Dual-Language Support ('en' by default on launch)
   const [lang, setLang] = useState<'bn' | 'en'>('en');
 
-  // Distinct View States: 'splash' -> 'home' -> 'reader'
+  // Distinct View States: 'splash' -> 'home' -> 'reader' | 'blog' | 'blog-post'
   const [viewState, setViewState] = useState<ViewState>('splash');
+  const [currentBlogSlug, setCurrentBlogSlug] = useState<string>('');
 
   // Modals & Panels for the reader
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -184,6 +187,7 @@ export const App: React.FC = () => {
           onOpenSearch={() => setIsSearchOpen(true)}
           onOpenDrawer={() => setIsDrawerOpen(true)}
           onOpenAboutDeveloper={() => setIsAboutDeveloperOpen(true)}
+          onOpenBlog={() => setViewState('blog')}
         />
         <SearchModal
           isOpen={isSearchOpen}
@@ -209,6 +213,35 @@ export const App: React.FC = () => {
           lang={lang}
         />
       </div>
+    );
+  }
+
+  // 4. Blog Home
+  if (viewState === 'blog') {
+    return (
+      <BlogHome
+        lang={lang}
+        theme={theme}
+        onSelectPost={(slug) => {
+          setCurrentBlogSlug(slug);
+          setViewState('blog-post');
+        }}
+        onGoHome={() => setViewState('home')}
+        onOpenReader={() => setViewState('reader')}
+      />
+    );
+  }
+
+  // 5. Individual Blog Post
+  if (viewState === 'blog-post') {
+    return (
+      <BlogPost
+        slug={currentBlogSlug}
+        lang={lang}
+        theme={theme}
+        onGoBack={() => setViewState('blog')}
+        onOpenReader={() => setViewState('reader')}
+      />
     );
   }
 
