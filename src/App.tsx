@@ -279,6 +279,7 @@ export const App: React.FC = () => {
         totalPages={metadata?.total_pages || 611}
         readingMode={readingMode}
         isOpen={isAudioOpen}
+        isZenMode={isZenMode}
         lang={lang}
         playPageTrigger={playPageTrigger}
         onPlayStateChange={(playing, page) => {

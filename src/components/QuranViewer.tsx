@@ -750,16 +750,16 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
             })()}
 
             {/* 3. Center Elevated Action: Circular Audio Recitation Halo Button (Reference Style) */}
-            <div className="relative -mt-6 flex flex-col items-center">
+            <div className="relative -mt-4 flex flex-col items-center">
               {/* Concentric Halo Ring */}
-              <div className="p-1 rounded-full bg-white/95 dark:bg-[#07170e]/95 shadow-md border border-emerald-500/20">
+              <div className="p-1 rounded-full bg-white/95 dark:bg-[#07170e]/95 shadow-md border border-emerald-500/25">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     if (onPlayPageAudio) onPlayPageAudio(currentPage);
                     else onToggleAudio?.();
                   }}
-                  className={`w-13 h-13 rounded-full flex items-center justify-center text-white shadow-[0_8px_25px_rgba(16,185,129,0.55)] transition-all active:scale-90 cursor-pointer ${
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-[0_6px_20px_rgba(16,185,129,0.5)] transition-all active:scale-90 cursor-pointer ${
                     isAudioPlaying && audioPlayingPage === currentPage
                       ? 'bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-400 ring-4 ring-emerald-400/40 animate-pulse'
                       : 'bg-gradient-to-tr from-emerald-800 via-emerald-700 to-emerald-600 hover:scale-105'

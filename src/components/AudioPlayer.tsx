@@ -27,6 +27,7 @@ interface AudioPlayerProps {
   totalPages: number;
   readingMode?: ReadingMode;
   isOpen: boolean;
+  isZenMode?: boolean;
   lang: 'bn' | 'en';
   onClose: () => void;
   onPageChange: (newPage: number) => void;
@@ -39,6 +40,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   totalPages,
   readingMode = 'book',
   isOpen,
+  isZenMode = false,
   lang = 'en',
   onClose,
   onPageChange,
@@ -323,35 +325,57 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
       />
 
       {/* ========================================================
-          FLOATING AUDIO DOCK (Smooth Animated Fluid Glass Deck)
+          1. BACKDROP FOR EXPANDED PLAYER ON MOBILE (< sm)
+      ======================================================== */}
+      {!isMinimized && (
+        <div
+          onClick={() => setIsMinimized(true)}
+          className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 sm:hidden transition-opacity animate-in fade-in"
+        />
+      )}
+
+      {/* ========================================================
+          2. FLOATING AUDIO DOCK / BOTTOM SHEET
       ======================================================== */}
       <div
-        className={`fixed bottom-[78px] sm:bottom-6 right-2 sm:right-6 left-2 sm:left-auto z-45 max-w-[96vw] sm:max-w-md w-auto sm:w-[420px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-player-in ${
-          isEn ? 'font-sans' : 'font-bengali'
-        }`}
+        className={
+          isMinimized
+            ? `fixed bottom-[88px] sm:bottom-6 left-3 right-3 sm:left-auto sm:right-6 max-w-sm sm:max-w-md mx-auto sm:mx-0 w-auto sm:w-[420px] z-45 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isZenMode ? 'translate-y-28 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+              } ${isEn ? 'font-sans' : 'font-bengali'}`
+            : `fixed bottom-0 inset-x-0 z-50 sm:bottom-6 sm:right-6 sm:inset-x-auto sm:w-[420px] max-h-[88vh] sm:max-h-[85vh] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isEn ? 'font-sans' : 'font-bengali'
+              }`
+        }
       >
         {isMinimized ? (
           /* ========================================================
              MINIMIZED FLOATING PILL (Solid Opaque Luxury Pill)
           ======================================================== */
-          <div className="bg-white/95 dark:bg-[#12161a]/95 backdrop-blur-xl rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.35)] dark:shadow-[0_12px_36px_rgba(0,0,0,0.85)] border border-emerald-500/30 dark:border-emerald-700/40 p-2 sm:px-3.5 flex items-center justify-between gap-2.5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-in fade-in zoom-in-95">
-            {/* Left: Wave Icon + Ayah title */}
+          <div className="relative bg-white/95 dark:bg-[#07170e]/95 backdrop-blur-2xl rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.35)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.85)] border border-emerald-500/30 p-1.5 sm:px-3 flex items-center justify-between gap-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-in fade-in zoom-in-95 overflow-hidden">
+            {/* Left: Wave Icon + Ayah title & Reciter (Click to Expand) */}
             <div
               onClick={() => setIsMinimized(false)}
-              className="flex items-center gap-2.5 min-w-0 cursor-pointer flex-1"
+              className="flex items-center gap-2.5 min-w-0 cursor-pointer flex-1 pl-1"
+              title={isEn ? 'Click to expand player' : 'প্লেয়ার বড় করতে ক্লিক করুন'}
             >
-              <div className="w-8 h-8 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0 shadow-sm relative">
-                <Headphones className="w-4 h-4 text-amber-300" />
-                {isPlaying && (
-                  <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping" />
+              <div className="w-8.5 h-8.5 rounded-full bg-gradient-to-tr from-emerald-800 via-emerald-700 to-emerald-600 text-white flex items-center justify-center shrink-0 shadow-sm relative">
+                {isPlaying ? (
+                  <div className="flex items-center gap-0.5 h-3 px-1">
+                    <span className="w-0.5 h-2 bg-amber-300 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-0.5 h-3 bg-amber-300 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-0.5 h-2 bg-amber-300 rounded-full animate-bounce" />
+                  </div>
+                ) : (
+                  <Headphones className="w-4 h-4 text-amber-300" />
                 )}
               </div>
-              <div className="min-w-0">
-                <div className="text-xs font-bold text-gray-900 dark:text-gray-100 truncate flex items-center gap-1.5">
+              <div className="min-w-0 flex-1">
+                <div className="text-xs font-black text-gray-900 dark:text-gray-100 truncate flex items-center gap-1.5">
                   {currentAyah ? (
                     <>
-                      <span>{isEn ? currentAyah.surahName_en : currentAyah.surahName_bn}</span>
-                      <span className="text-emerald-600 dark:text-emerald-400 font-extrabold">
+                      <span className="truncate">{isEn ? currentAyah.surahName_en : currentAyah.surahName_bn}</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-black shrink-0">
                         {isEn ? `:${currentAyah.numberInSurah}` : `:${toBanglaNumber(currentAyah.numberInSurah)}`}
                       </span>
                     </>
@@ -359,18 +383,19 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     <span>{isEn ? `Page ${currentPage}` : `পৃষ্ঠা ${toBanglaNumber(currentPage)}`}</span>
                   )}
                 </div>
-                <div className="text-[10px] text-gray-500 dark:text-gray-400 truncate">
+                <div className="text-[10px] text-gray-500 dark:text-gray-400 truncate font-semibold">
                   {isEn ? selectedReciter.name_en : selectedReciter.name_bn}
                 </div>
               </div>
             </div>
 
-            {/* Right: Play/Pause, Expand, Close */}
-            <div className="flex items-center gap-1 shrink-0">
+            {/* Right: Quick Play/Pause, Expand, Close */}
+            <div className="flex items-center gap-1 shrink-0 pr-1">
               <button
                 onClick={togglePlay}
                 disabled={isLoading}
-                className="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center shadow-sm cursor-pointer transition-transform active:scale-90"
+                className="w-8.5 h-8.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center shadow-xs cursor-pointer transition-transform active:scale-90"
+                title={isPlaying ? (isEn ? 'Pause' : 'পজ') : (isEn ? 'Play' : 'প্লে')}
               >
                 {isLoading ? (
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -383,7 +408,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
               <button
                 onClick={() => setIsMinimized(false)}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                className="p-1.5 rounded-full text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                 title={isEn ? 'Expand Player' : 'প্লেয়ার বড় করুন'}
               >
                 <ChevronUp className="w-4 h-4" />
@@ -391,19 +416,32 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
               <button
                 onClick={onClose}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+                className="p-1.5 rounded-full text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
                 title={isEn ? 'Close Player' : 'বন্ধ করুন'}
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
+
+            {/* Live Progress Bar Line along bottom */}
+            {duration > 0 && (
+              <div className="absolute bottom-0 inset-x-4 h-0.5 bg-emerald-100 dark:bg-emerald-950/60 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-emerald-500 transition-all duration-200"
+                  style={{ width: `${Math.min(100, (currentTime / duration) * 100)}%` }}
+                />
+              </div>
+            )}
           </div>
         ) : (
           /* ========================================================
-             EXPANDED FLOATING DOCK (Solid Opaque Luxury Card)
+             EXPANDED FLOATING DOCK / BOTTOM SHEET (Solid Opaque Luxury Card)
           ======================================================== */
-          <div className="bg-white dark:bg-[#12161a] rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.35)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] border border-[#e2d8bd] dark:border-[#2a3442] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-in fade-in zoom-in-95 flex flex-col max-h-[85vh]">
+          <div className="bg-white dark:bg-[#12161a] rounded-t-3xl sm:rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.35)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] border-t sm:border border-[#e2d8bd] dark:border-[#2a3442] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] animate-in fade-in zoom-in-95 flex flex-col max-h-[88vh] sm:max-h-[85vh]">
             
+            {/* Mobile Drag Indicator */}
+            <div className="w-12 h-1 rounded-full bg-gray-300 dark:bg-gray-700 mx-auto mt-2 mb-1 sm:hidden" />
+
             {/* Top Bar: Reciter Picker Pill & Window Controls */}
             <div className="px-4 py-2.5 bg-gray-50/80 dark:bg-gray-900/60 border-b border-gray-100 dark:border-gray-800/80 flex items-center justify-between gap-2">
               {/* Reciter trigger button */}
