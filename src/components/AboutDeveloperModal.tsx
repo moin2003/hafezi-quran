@@ -3,16 +3,16 @@ import {
   X,
   Mail,
   Sparkles,
-  Award,
-  CheckCircle2,
+  Check,
   Copy,
   ExternalLink,
   Heart,
-  Share2
+  BadgeCheck,
+  ArrowUpRight
 } from 'lucide-react';
 import { sfx } from '../utils/sfxService';
 
-// Official Social Brand SVGs
+// Minimal Sleek Brand Icons
 const XTwitterIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -65,7 +65,7 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
 
   if (!isOpen) return null;
 
-  const developerEmail = 'hafizmoinul.dev@gmail.com';
+  const developerEmail = 'moinmoin6308@gmail.com';
 
   const handleCopyEmail = () => {
     sfx.playGoldenClick();
@@ -76,110 +76,91 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
 
   const socialLinks = [
     {
-      name: isEn ? 'X (Twitter)' : 'এক্স (টুইটার)',
+      name: 'X (Twitter)',
       handle: '@moinul_islam25',
       url: 'https://x.com/moinul_islam25',
       icon: XTwitterIcon,
-      color: 'hover:border-zinc-400 hover:text-white bg-zinc-900/70',
-      badge: 'Official X',
-      tagline: 'MOINUL ISLAM',
+      theme: 'hover:border-zinc-500/60 hover:bg-zinc-900/80',
     },
     {
-      name: isEn ? 'Facebook Profile' : 'ফেসবুক প্রোফাইল',
+      name: 'Facebook',
       handle: 'moinulislam23',
       url: 'https://www.facebook.com/moinulislam23',
       icon: FacebookIcon,
-      color: 'hover:border-blue-500 hover:text-blue-300 bg-blue-950/40',
-      badge: 'Social',
-      tagline: 'Moinul Islam',
+      theme: 'hover:border-blue-500/60 hover:bg-blue-950/60',
     },
     {
-      name: isEn ? 'Instagram' : 'ইনস্টাগ্রাম',
+      name: 'Instagram',
       handle: '@moinul_islam_25',
       url: 'https://www.instagram.com/moinul_islam_25/',
       icon: InstagramIcon,
-      color: 'hover:border-pink-500 hover:text-pink-300 bg-gradient-to-br from-purple-950/40 to-pink-950/30',
-      badge: 'Instagram',
-      tagline: 'moinul_islam_25',
+      theme: 'hover:border-pink-500/60 hover:bg-pink-950/60',
     },
     {
-      name: isEn ? 'Threads' : 'থ্রেডস',
+      name: 'Threads',
       handle: '@moinul_islam_25',
       url: 'https://www.threads.net/@moinul_islam_25',
       icon: ThreadsIcon,
-      color: 'hover:border-neutral-400 hover:text-neutral-200 bg-neutral-900/70',
-      badge: 'Threads',
-      tagline: 'moinul_islam_25',
+      theme: 'hover:border-neutral-500/60 hover:bg-neutral-900/80',
     },
     {
-      name: isEn ? 'YouTube Channel' : 'ইউটিউব চ্যানেল',
+      name: 'YouTube',
       handle: '@marshalgamerz',
       url: 'https://www.youtube.com/@marshalgamerz',
       icon: YoutubeIcon,
-      color: 'hover:border-red-500 hover:text-red-300 bg-red-950/40',
-      badge: 'YouTube',
-      tagline: 'Marshal Gamerz',
+      theme: 'hover:border-red-500/60 hover:bg-red-950/60',
     },
     {
-      name: isEn ? 'GitHub Profile' : 'গিটহাব প্রোফাইল',
+      name: 'GitHub',
       handle: '@moin2003',
       url: 'https://github.com/moin2003',
       icon: GithubIcon,
-      color: 'hover:border-emerald-500 hover:text-white bg-gray-900/70',
-      badge: 'Developer',
-      tagline: 'moin2003',
+      theme: 'hover:border-emerald-500/60 hover:bg-emerald-950/60',
     },
   ];
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 select-none overflow-y-auto ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-3.5 sm:p-6 select-none overflow-y-auto ${
         isEn ? 'font-sans' : 'font-bengali'
       }`}
     >
-      {/* Backdrop */}
+      {/* Deep Glass Backdrop */}
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity animate-in fade-in"
+        className="fixed inset-0 bg-black/85 backdrop-blur-xl transition-opacity animate-in fade-in duration-300"
         onClick={onClose}
       />
 
-      {/* Main Modal Card */}
-      <div className="relative w-full max-w-2xl bg-gradient-to-b from-[#062413] via-[#041d0e] to-[#021208] rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.9)] border border-amber-400/40 text-white overflow-hidden animate-in zoom-in-95 duration-200 my-auto">
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-emerald-500/25 via-emerald-600/10 to-transparent pointer-events-none" />
+      {/* Main Bento Modal */}
+      <div className="relative w-full max-w-xl bg-gradient-to-b from-[#0a1f13] via-[#05140b] to-[#020b06] rounded-[36px] shadow-[0_30px_90px_rgba(0,0,0,0.95)] border border-emerald-500/20 text-white overflow-hidden animate-in zoom-in-95 duration-250 my-auto">
+        
+        {/* Soft Ambient Radiance Top */}
+        <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-emerald-500/20 via-emerald-600/5 to-transparent pointer-events-none rounded-t-[36px]" />
+        
+        {/* Close Button Top-Right Minimal */}
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer border border-white/10 hover:scale-105 active:scale-95 backdrop-blur-md"
+          title={isEn ? 'Close' : 'বন্ধ করুন'}
+        >
+          <X className="w-4 h-4" />
+        </button>
 
-        {/* Top Header Controls */}
-        <div className="relative z-10 px-5 sm:px-6 pt-5 pb-3 flex items-center justify-between border-b border-emerald-800/60">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-amber-300 animate-pulse" />
-            <h3 className="font-bold text-base sm:text-lg text-amber-200 tracking-wide">
-              {isEn ? 'About the Developer & Initiator' : 'উদ্যোক্তা ও ডেভেলপার পরিচিতি'}
-            </h3>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white transition-all cursor-pointer border border-white/10"
-            title={isEn ? 'Close' : 'বন্ধ করুন'}
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Modal Body */}
-        <div className="relative z-10 p-5 sm:p-6 space-y-5 max-h-[82vh] overflow-y-auto">
+        {/* Modal Content */}
+        <div className="relative z-10 p-6 sm:p-8 space-y-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
           
-          {/* Profile Hero Card */}
-          <div className="flex flex-col sm:flex-row items-center gap-5 p-5 rounded-2xl bg-white/5 border border-emerald-500/30 backdrop-blur-md">
-            {/* Avatar / Real Photo of Hafiz Md. Moinul Islam */}
+          {/* Hero Profile Header (Circular Minimal Avatar with Glowing Aura) */}
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 pt-1">
+            
+            {/* Round Glass Portrait */}
             <div className="relative shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-amber-400 via-emerald-500 to-amber-600 p-1 shadow-[0_10px_28px_rgba(4,120,87,0.6)] flex items-center justify-center">
-                <div className="w-full h-full rounded-xl bg-[#031c0e] overflow-hidden border border-amber-300/50 relative flex items-center justify-center">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full p-1 bg-gradient-to-tr from-amber-400 via-emerald-400 to-amber-200 shadow-[0_0_35px_rgba(16,185,129,0.35)]">
+                <div className="w-full h-full rounded-full overflow-hidden bg-[#03150b] ring-2 ring-black/40">
                   <img
                     src="/images/moinul_islam.webp"
                     alt="Hafiz Md. Moinul Islam"
-                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300 select-none"
+                    className="w-full h-full object-cover object-top select-none transition-transform duration-500 hover:scale-110"
                     onError={(e) => {
-                      // Fallback to jpg if webp fails
                       const target = e.target as HTMLImageElement;
                       if (!target.src.endsWith('.jpg')) {
                         target.src = '/images/moinul_islam.jpg';
@@ -188,48 +169,54 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
                   />
                 </div>
               </div>
+              
+              {/* Verified Badge */}
               <div 
-                className="absolute -bottom-2 -right-2 p-1.5 rounded-full bg-emerald-600 text-white shadow-md border border-amber-400/80"
+                className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center border-2 border-[#05140b] shadow-lg"
                 title={isEn ? 'Verified Hafiz & Developer' : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার'}
               >
-                <Award className="w-4 h-4 text-amber-300" />
+                <BadgeCheck className="w-4 h-4 text-amber-300" />
               </div>
             </div>
 
-            {/* Title & Bio */}
-            <div className="text-center sm:text-left flex-1">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-400/40 text-emerald-300 text-[11px] font-bold mb-1.5">
+            {/* Profile Intro Info */}
+            <div className="text-center sm:text-left flex-1 min-w-0">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-400/25 text-emerald-300 text-[11px] font-semibold tracking-wide mb-2">
                 <Sparkles className="w-3 h-3 text-amber-300" />
                 <span>{isEn ? 'Initiator & Lead Developer' : 'উদ্যোক্তা ও প্রধান ডেভেলপার'}</span>
               </div>
-              <h2 className="text-xl sm:text-2xl font-black text-white drop-shadow tracking-wide">
+              
+              <h2 className="text-2xl sm:text-[26px] font-extrabold text-white tracking-tight leading-tight drop-shadow">
                 {isEn ? 'Hafiz Md. Moinul Islam' : 'হাফেজ মোঃ মঈনুল ইসলাম'}
               </h2>
-              <p className="text-xs sm:text-sm text-emerald-200/90 font-medium mt-1">
+              
+              <p className="text-xs sm:text-sm text-emerald-200/80 font-medium mt-1">
                 {isEn
-                  ? 'Hafez-e-Quran & Full-Stack Software Engineer / Islamic Tech Innovator'
-                  : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার • ইসলামিক ডিজিটাল সলিউশন নির্মাতা'}
+                  ? 'Hafez-e-Quran & Full-Stack Software Engineer'
+                  : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার'}
               </p>
-              <p className="text-xs text-amber-200/90 font-arabic italic mt-1 text-center sm:text-left">
+
+              {/* Minimal Spiritual Quote */}
+              <p className="text-[12px] text-amber-300/90 font-arabic italic mt-2 bg-white/[0.03] px-3 py-1.5 rounded-xl border border-white/[0.06] inline-block leading-relaxed">
                 "الحمد لله على كل شيء — A person chosen by Allah, cannot be defeated by humans.!!"
-              </p>
-              <p className="text-xs text-gray-300 mt-2 leading-relaxed">
-                {isEn
-                  ? 'Passionate about crafting ultra-realistic, authentic, ad-free Islamic applications with cutting-edge web technologies, empowering the Ummah worldwide.'
-                  : 'মুসলিম উম্মাহর কুরআন হিফজ, তিলাওয়াত ও অনুশীলনের সুবিধার্থে আধুনিক ও বিজ্ঞাপনমুক্ত নির্ভরযোগ্য ইসলামিক সফটওয়্যার তৈরিতে নিবেদিত।'}
               </p>
             </div>
           </div>
 
-          {/* Social & Professional Connect Links */}
-          <div>
-            <h4 className="text-xs sm:text-sm font-bold text-amber-300 uppercase tracking-wider mb-3 flex items-center gap-2">
-              <Share2 className="w-4 h-4 text-emerald-400" />
-              <span>{isEn ? 'Social Media & Connect Profiles' : 'সোশ্যাল মিডিয়া ও অফিসিয়াল লিংকসমূহ'}</span>
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          {/* Social Profiles Minimal Grid */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-[11px] uppercase tracking-wider font-bold text-gray-400">
+                {isEn ? 'Connect & Follow' : 'সোশ্যাল মিডিয়া প্রোফাইল'}
+              </span>
+              <span className="text-[11px] text-emerald-400 font-medium">
+                {isEn ? '6 Official Channels' : '৬টি অফিসিয়াল লিংক'}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
               {socialLinks.map((item, idx) => {
-                const IconComponent = item.icon;
+                const Icon = item.icon;
                 return (
                   <a
                     key={idx}
@@ -237,24 +224,21 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => sfx.playGoldenClick()}
-                    className={`p-3 rounded-2xl border border-emerald-600/30 transition-all duration-200 flex items-center justify-between group hover:scale-[1.02] active:scale-95 shadow-md ${item.color}`}
+                    className={`group p-3 rounded-2xl bg-white/[0.04] border border-white/[0.08] transition-all duration-200 flex flex-col justify-between hover:scale-[1.03] active:scale-95 shadow-sm backdrop-blur-md ${item.theme}`}
                   >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0 border border-white/10 group-hover:scale-110 transition-transform">
-                        <IconComponent className="w-5 h-5 text-amber-300" />
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="w-7 h-7 rounded-xl bg-white/10 flex items-center justify-center text-amber-300 group-hover:text-white transition-colors">
+                        <Icon className="w-4 h-4" />
                       </div>
-                      <div className="min-w-0">
-                        <div className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-200 transition-colors truncate">
-                          {item.name}
-                        </div>
-                        <div className="text-[11px] text-gray-300 truncate font-mono">{item.handle}</div>
-                      </div>
+                      <ArrowUpRight className="w-3.5 h-3.5 text-gray-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                     </div>
-                    <div className="flex items-center gap-1 shrink-0 ml-2">
-                      <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/10 text-emerald-300 font-semibold border border-white/5">
-                        {item.badge}
-                      </span>
-                      <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-colors" />
+                    <div>
+                      <div className="text-xs font-bold text-white group-hover:text-amber-200 transition-colors truncate">
+                        {item.name}
+                      </div>
+                      <div className="text-[10px] text-gray-400 truncate font-mono mt-0.5">
+                        {item.handle}
+                      </div>
                     </div>
                   </a>
                 );
@@ -262,75 +246,73 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
             </div>
           </div>
 
-          {/* Direct Communication & Contact */}
-          <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/20 space-y-2.5">
-            <h4 className="text-xs font-bold text-emerald-300 uppercase tracking-wider flex items-center gap-2">
-              <Mail className="w-4 h-4 text-amber-300" />
-              <span>{isEn ? 'Direct Contact & Inquiries' : 'সরাসরি যোগাযোগ ও মতামত'}</span>
-            </h4>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-3 rounded-xl bg-white/5 border border-white/10">
-              <div className="flex items-center gap-2.5 min-w-0">
-                <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="text-xs sm:text-sm font-bold text-white select-all truncate">
+          {/* Clean Rounded Email Card */}
+          <div className="p-4 rounded-2xl bg-white/[0.03] border border-emerald-500/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0 w-full sm:w-auto">
+              <div className="w-9 h-9 rounded-xl bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center shrink-0 text-emerald-300">
+                <Mail className="w-4 h-4" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">
+                  {isEn ? 'Direct Inquiries' : 'সরাসরি ইমেইল'}
+                </div>
+                <div className="text-xs sm:text-sm font-bold text-white truncate select-all">
                   {developerEmail}
-                </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
-                <button
-                  onClick={handleCopyEmail}
-                  className="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow cursor-pointer active:scale-95"
-                >
-                  {copied ? (
-                    <>
-                      <CheckCircle2 className="w-3.5 h-3.5 text-amber-300" />
-                      <span>{isEn ? 'Copied!' : 'কপি হয়েছে!'}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>{isEn ? 'Copy Email' : 'ইমেইল কপি করুন'}</span>
-                    </>
-                  )}
-                </button>
-                <a
-                  href={`mailto:${developerEmail}`}
-                  className="flex-1 sm:flex-initial px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-emerald-200 hover:text-white text-xs font-bold transition-all flex items-center justify-center gap-1 border border-white/10 cursor-pointer"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  <span>{isEn ? 'Send Email' : 'ইমেইল পাঠান'}</span>
-                </a>
-              </div>
+            </div>
+
+            <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
+              <button
+                onClick={handleCopyEmail}
+                className="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md cursor-pointer active:scale-95"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-amber-300" />
+                    <span>{isEn ? 'Copied' : 'কপি হয়েছে'}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>{isEn ? 'Copy' : 'কপি'}</span>
+                  </>
+                )}
+              </button>
+              
+              <a
+                href={`mailto:${developerEmail}`}
+                className="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-white/10 cursor-pointer active:scale-95"
+              >
+                <ExternalLink className="w-3.5 h-3.5 text-gray-300" />
+                <span>{isEn ? 'Email' : 'পাঠান'}</span>
+              </a>
             </div>
           </div>
 
-          {/* Project Mission & Sadaqah Jariyah Dedication */}
-          <div className="text-center p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-emerald-900/40 to-emerald-950/60 border border-amber-400/20">
-            <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-amber-300 mb-1">
-              <Heart className="w-3.5 h-3.5 text-red-400 fill-red-400" />
-              <span>{isEn ? 'Dedicated as Sadaqah Jariyah' : 'সদকায়ে জারিয়া হিসেবে উৎসর্গীকৃত'}</span>
-            </div>
-            <p className="text-[11px] text-gray-300 leading-relaxed max-w-lg mx-auto">
+          {/* Minimal Sadaqah Jariyah Footer Pill */}
+          <div className="flex items-center justify-center gap-2 p-3 rounded-2xl bg-emerald-950/50 border border-amber-400/20 text-center">
+            <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400 shrink-0" />
+            <p className="text-[11px] text-emerald-100/90 leading-tight">
               {isEn
-                ? 'Please remember the developer, his parents, teachers, and the entire Muslim Ummah in your sincere prayers and Dua.'
-                : 'আপনার মূল্যবান তিলাওয়াত ও দোয়ায় ডেভেলপার, তার পিতামাতা, শিক্ষকবৃন্দ এবং সমগ্র মুসলিম উম্মাহকে শামিল রাখার বিনীত অনুরোধ রইল।'}
+                ? 'Dedicated as Sadaqah Jariyah — Please remember in your sincere prayers.'
+                : 'সদকায়ে জারিয়া হিসেবে উৎসর্গীকৃত — আপনার মূল্যবান তিলাওয়াত ও দোয়ায় স্মরণ রাখবেন।'}
             </p>
           </div>
 
         </div>
 
-        {/* Footer Close Button */}
-        <div className="relative z-10 px-6 py-3.5 bg-[#020e06] border-t border-emerald-900/80 flex items-center justify-between">
-          <span className="text-[11px] text-emerald-400/80 font-medium">
-            15 Lines Noorani Hafezi Quran Sharif v1.0
-          </span>
+        {/* Ultra-Minimal Bottom Bar */}
+        <div className="px-7 py-3.5 bg-black/40 border-t border-white/[0.06] flex items-center justify-between text-[11px] text-gray-400">
+          <span>15 Lines Noorani Hafezi Quran</span>
           <button
             onClick={onClose}
-            className="px-5 py-1.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95 border border-emerald-500/50"
+            className="text-emerald-400 hover:text-emerald-300 font-semibold cursor-pointer transition-colors"
           >
-            {isEn ? 'Close' : 'বন্ধ করুন'}
+            {isEn ? 'Done' : 'ঠিক আছে'}
           </button>
         </div>
+
       </div>
     </div>
   );
