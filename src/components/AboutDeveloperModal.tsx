@@ -170,15 +170,28 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
           
           {/* Profile Hero Card */}
           <div className="flex flex-col sm:flex-row items-center gap-5 p-5 rounded-2xl bg-white/5 border border-emerald-500/30 backdrop-blur-md">
-            {/* Avatar Monogram */}
+            {/* Avatar / Real Photo of Hafiz Md. Moinul Islam */}
             <div className="relative shrink-0">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-amber-400 via-emerald-600 to-emerald-900 p-1 shadow-[0_10px_25px_rgba(4,120,87,0.5)] flex items-center justify-center">
-                <div className="w-full h-full rounded-xl bg-[#031c0e] flex flex-col items-center justify-center text-center p-2 border border-amber-300/40">
-                  <span className="font-arabic text-xl text-amber-300 font-bold leading-none">مَعِين</span>
-                  <span className="font-extrabold text-white text-base sm:text-lg tracking-wider mt-0.5">MI</span>
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-amber-400 via-emerald-500 to-amber-600 p-1 shadow-[0_10px_28px_rgba(4,120,87,0.6)] flex items-center justify-center">
+                <div className="w-full h-full rounded-xl bg-[#031c0e] overflow-hidden border border-amber-300/50 relative flex items-center justify-center">
+                  <img
+                    src="/images/moinul_islam.webp"
+                    alt="Hafiz Md. Moinul Islam"
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300 select-none"
+                    onError={(e) => {
+                      // Fallback to jpg if webp fails
+                      const target = e.target as HTMLImageElement;
+                      if (!target.src.endsWith('.jpg')) {
+                        target.src = '/images/moinul_islam.jpg';
+                      }
+                    }}
+                  />
                 </div>
               </div>
-              <div className="absolute -bottom-2 -right-2 p-1.5 rounded-full bg-emerald-600 text-white shadow-md border border-amber-400/60">
+              <div 
+                className="absolute -bottom-2 -right-2 p-1.5 rounded-full bg-emerald-600 text-white shadow-md border border-amber-400/80"
+                title={isEn ? 'Verified Hafiz & Developer' : 'হাফেজে কুরআন ও সফটওয়্যার ইঞ্জিনিয়ার'}
+              >
                 <Award className="w-4 h-4 text-amber-300" />
               </div>
             </div>
