@@ -98,19 +98,19 @@ export const Header: React.FC<HeaderProps> = ({
         {/* ========================================================
             1. MOBILE APP HEADER (< md / 768px) - Clean, Uncluttered & Fast
         ======================================================== */}
-        <div className="flex md:hidden items-center justify-between w-full gap-1.5 h-13">
+        <div className="flex md:hidden items-center justify-between w-full gap-2 h-13 px-0.5">
           {/* Left: Home & Index Drawer */}
           <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={onOpenHome}
-              className="p-1.5 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 active:scale-95 transition-all cursor-pointer"
+              className="w-9 h-9 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 flex items-center justify-center active:scale-95 transition-all cursor-pointer"
               title={isEn ? 'Return Home' : 'হোমে ফিরে যান'}
             >
-              <Home className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
+              <Home className="w-5 h-5 text-amber-600 dark:text-amber-400" />
             </button>
             <button
               onClick={onToggleDrawer}
-              className="px-2 py-1.5 rounded-xl text-emerald-900 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-300/70 dark:border-emerald-800/70 font-bold text-xs flex items-center gap-1 shadow-2xs active:scale-95 transition-all cursor-pointer shrink-0"
+              className="h-9 px-2.5 rounded-xl text-emerald-900 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-300/70 dark:border-emerald-800/70 font-bold text-xs flex items-center gap-1 shadow-2xs active:scale-95 transition-all cursor-pointer"
               title={isEn ? 'Open Quran Index' : 'সূচীপত্র'}
             >
               <Menu className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
@@ -118,27 +118,21 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
-          {/* Center: Live Para, Surah & Page Number (Tappable Search & Jump) */}
+          {/* Center: Live Surah & Page Number (Tappable Search & Jump) */}
           <button
             onClick={onOpenSearch}
-            className="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-full bg-gradient-to-r from-emerald-50/90 via-emerald-50/60 to-emerald-50/90 dark:from-emerald-950/50 dark:via-emerald-900/40 dark:to-emerald-950/50 border border-emerald-300/70 dark:border-emerald-700/60 text-emerald-950 dark:text-emerald-100 shadow-2xs active:scale-98 transition-all group cursor-pointer min-w-0"
-            title={isEn ? 'Search or Jump to Page' : 'সার্চ বা পেজে যান'}
+            className="flex-1 flex items-center justify-center gap-1.5 h-9 px-2.5 rounded-full bg-emerald-50/90 dark:bg-emerald-950/60 border border-emerald-300/70 dark:border-emerald-700/60 text-emerald-950 dark:text-emerald-100 shadow-2xs active:scale-98 transition-all group cursor-pointer min-w-0"
+            title={isEn ? 'Search or Jump to Surah / Page' : 'সূরা বা পৃষ্ঠায় যান'}
           >
-            <div className="flex items-center gap-1 min-w-0 truncate text-xs font-bold text-emerald-900 dark:text-emerald-200">
-              <span className="truncate max-w-[80px] xs:max-w-[110px]">{activeParaName || (isEn ? 'Quran' : 'কোরআন')}</span>
-              {activeSurahName && (
-                <>
-                  <span className="text-emerald-400 dark:text-emerald-600 font-bold">•</span>
-                  <span className="truncate max-w-[65px] xs:max-w-[90px] text-gray-700 dark:text-gray-300 font-semibold">{activeSurahName}</span>
-                </>
-              )}
-            </div>
+            <span className="truncate text-xs font-bold text-emerald-950 dark:text-emerald-100">
+              {activeSurahName || (isEn ? 'Holy Quran' : 'পবিত্র কুরআন')}
+            </span>
             <span className="bg-emerald-600 text-white px-2 py-0.5 rounded-full text-[10px] font-black shadow-2xs whitespace-nowrap shrink-0">
               {isEn ? `P. ${pageInfo.page}` : `পৃ. ${toBanglaNumber(pageInfo.page)}`}
             </span>
           </button>
 
-          {/* Right: Language Toggle, Theme & Bookmark */}
+          {/* Right: Theme Toggle & Language Switch */}
           <div className="flex items-center gap-1 shrink-0">
             {/* Theme Toggle */}
             <button
@@ -147,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
                 else if (theme === 'sepia') onChangeTheme('dark');
                 else onChangeTheme('paper');
               }}
-              className="p-1.5 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center transition-colors cursor-pointer"
               title={isEn ? `Theme: ${theme}` : `থিম: ${theme}`}
             >
               {theme === 'paper' && <Sun className="w-4 h-4 text-amber-500" />}
@@ -158,23 +152,10 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Language Switch */}
             <button
               onClick={onToggleLang}
-              className="px-2 py-1 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-300/70 dark:border-amber-700/60 text-amber-900 dark:text-amber-200 text-[10px] font-bold transition-all cursor-pointer shrink-0"
+              className="h-8 px-2 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-300/70 dark:border-amber-700/60 text-amber-900 dark:text-amber-200 text-[11px] font-extrabold flex items-center justify-center transition-all cursor-pointer"
               title={isEn ? 'Switch Language' : 'ভাষা পরিবর্তন'}
             >
               {t.langToggle}
-            </button>
-
-            {/* Bookmark */}
-            <button
-              onClick={onOpenBookmark}
-              className={`p-1.5 rounded-xl transition-colors cursor-pointer ${
-                isBookmarked
-                  ? 'text-emerald-600 bg-emerald-100 dark:bg-emerald-900/60'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-              }`}
-              title={t.bookmark}
-            >
-              <BookmarkIcon className={`w-4.5 h-4.5 ${isBookmarked ? 'fill-emerald-600 text-emerald-600' : ''}`} />
             </button>
           </div>
         </div>

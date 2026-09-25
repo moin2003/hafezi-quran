@@ -562,7 +562,7 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
       {effectiveMode === 'single' && (
         <div 
           onClick={handlePageTap}
-          className="w-full flex-1 flex flex-col items-center justify-center relative cursor-pointer p-0 select-none min-h-[calc(100dvh-54px)] pb-20 sm:pb-4"
+          className="w-full flex-1 flex flex-col items-center justify-center relative cursor-pointer p-0 select-none min-h-[calc(100dvh-56px)] pt-14 pb-20 sm:pt-16 sm:pb-6"
         >
           {/* Full-Bleed Quran Page Image (Maximized for Mobile Screen) */}
           <div
@@ -572,14 +572,9 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
             <img
               src={`/pages/page_${currentPage}.webp`}
               alt={`Hafezi Quran Page ${currentPage}`}
-              className="w-full h-[calc(100dvh-125px)] sm:h-[86vh] object-contain block mx-auto select-none transition-all"
+              className="w-full h-[calc(100dvh-145px)] sm:h-[86vh] object-contain block mx-auto select-none transition-all"
               loading="eager"
             />
-
-            {/* Bottom-Left Floating Page Badge */}
-            <div className="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-emerald-950/85 backdrop-blur-md text-emerald-200 text-[11px] sm:text-xs font-bold shadow-md border border-emerald-500/25 pointer-events-none">
-              {isEn ? `Page ${currentPage}` : `পৃষ্ঠা ${toBanglaNumber(currentPage)}`}
-            </div>
           </div>
         </div>
       )}
@@ -717,7 +712,7 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
             </div>
           )}
 
-          {/* Floating Mobile App Bar with Elevated Center Play Button */}
+          {/* Floating Mobile App Bar with Centered Play Button */}
           <div className="relative rounded-full bg-white/95 dark:bg-[#07170e]/95 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_12px_40px_rgba(0,0,0,0.5)] px-3 py-1.5 flex items-center justify-between">
             
             {/* Left Action: Previous Page (Page 2 -> Page 1) */}
@@ -752,28 +747,26 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
               );
             })()}
 
-            {/* Elevated Center Play / Pause Audio Button */}
-            <div className="relative -mt-6">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (onPlayPageAudio) onPlayPageAudio(currentPage);
-                  else onToggleAudio?.();
-                }}
-                className={`w-13 h-13 rounded-full flex items-center justify-center text-white shadow-[0_8px_25px_rgba(16,185,129,0.55)] border-3 border-[#f7f5ee] dark:border-[#07170e] transition-all active:scale-90 cursor-pointer ${
-                  isAudioPlaying && audioPlayingPage === currentPage
-                    ? 'bg-gradient-to-tr from-emerald-600 to-emerald-400 ring-4 ring-emerald-400/40 animate-pulse'
-                    : 'bg-gradient-to-tr from-emerald-700 via-emerald-600 to-amber-500 hover:scale-105'
-                }`}
-                title={isEn ? 'Play / Pause Recitation' : 'অডিও তিলাওয়াত শুনুন'}
-              >
-                {isAudioPlaying && audioPlayingPage === currentPage ? (
-                  <Pause className="w-5 h-5 fill-current" />
-                ) : (
-                  <Play className="w-5 h-5 fill-current ml-0.5" />
-                )}
-              </button>
-            </div>
+            {/* Center Play / Pause Audio Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onPlayPageAudio) onPlayPageAudio(currentPage);
+                else onToggleAudio?.();
+              }}
+              className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-[0_6px_20px_rgba(16,185,129,0.5)] transition-all active:scale-90 cursor-pointer ${
+                isAudioPlaying && audioPlayingPage === currentPage
+                  ? 'bg-gradient-to-tr from-emerald-600 to-emerald-400 ring-4 ring-emerald-400/40 animate-pulse'
+                  : 'bg-gradient-to-tr from-emerald-700 via-emerald-600 to-amber-500 hover:scale-105'
+              }`}
+              title={isEn ? 'Play / Pause Recitation' : 'অডিও তিলাওয়াত শুনুন'}
+            >
+              {isAudioPlaying && audioPlayingPage === currentPage ? (
+                <Pause className="w-5 h-5 fill-current" />
+              ) : (
+                <Play className="w-5 h-5 fill-current ml-0.5" />
+              )}
+            </button>
 
             {/* Page Dial / Slider Trigger */}
             <button
