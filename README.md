@@ -1,64 +1,66 @@
-# নূরানী হাফেজী কোরআন শরীফ (১৫ লাইন এমদাদিয়া সংস্করণ)
+# 📖 15-Line Noorani Hafezi Quran Sharif
 
-একটি আধুনিক, দ্রুতগতির, ইন্টারঅ্যাক্টিভ ও সম্পূর্ণ অফলাইন সক্ষম (PWA) ডিজিটাল হাফেজী কোরআন প্ল্যাটফর্ম। বিশেষ করে হাফেজে কুরআন, হিফজ শিক্ষার্থী এবং সাধারণ পাঠকদের জন্য তৈরি।
+> **An authentic, high-performance digital Quran web application and Islamic management platform built with React, TypeScript, Tailwind CSS, and Supabase.**
 
----
-
-## 🌟 মূল বৈশিষ্ট্যসমূহ (Key Features)
-
-### ১. নিখুঁত ১৫ লাইনের হাফিজি সংস্করণ (Emdadia 15-Line Standard)
-* আসল ছাপাখানায় মুদ্রিত ১৫ লাইনের এমদাদিয়া হাফেজী কোরআনের প্রতিটি পৃষ্ঠার (৬১১ পৃষ্ঠা) হাই-রেজোলিউশন ক্রিস্প ভিউ।
-* প্রতি পারা ঠিক ২০ পৃষ্ঠা এবং প্রতি পৃষ্ঠার শেষে পূর্ণাঙ্গ আয়াত সমাপ্তির নিয়ম অক্ষুণ্ণ।
-
-### ২. ডুয়েল রিডিং মোড (Dual Reading Modes)
-* **💻 পিসি ও ল্যাপটপে বই মোড (Book Spread View):** আসল বইয়ের মতো দুই পাতা পাশাপাশি (ডান পাতা ও বাম পাতা) দৃশ্যমান। কিবোর্ডের বাম-ডান তীর (Arrow Keys) চেপে সহজে পৃষ্ঠা ওল্টানো যায়।
-* **📱 মোবাইলে স্ক্রলিং মোড (Continuous Scroll):** একহাতে সহজে পড়ার জন্য স্মুথ ভার্টিক্যাল স্ক্রল ও সোয়াইপ।
-* **🧘 জেন / ডিস্ট্রাকশন-ফ্রি মোড (Zen Mode):** স্ক্রিনে একবার ক্লিক/ট্যাপ করলেই হেডার ও ফুটার অদৃশ্য হয়ে যাবে এবং শুধুমাত্র কোরআনের পৃষ্ঠা দৃশ্যমান থাকবে।
-
-### ৩. হাফিজ টুলবক্স ও বিশেষ সেকশন (Hafiz Companion)
-* **🕌 মুসাব্বাহাত (৭টি সূরা):** যে সকল সূরা আল্লাহর তাসবীহ দিয়ে শুরু হয়েছে (আল-ইসরা, আল-হাদীদ, আল-হাশর, আস-সফ, আল-জুমুআহ, আত-তাগাবুন, আল-আ'লা) সরাসরি যাওয়ার দ্রুত মেনু।
-* **🔖 ৭ মঞ্জিল ড্রয়ার:** সপ্তাহে এক খতম দেওয়ার সুবিধার জন্য ৭টি মঞ্জিল ইনডেক্স।
-* **🤲 ১৪টি ওয়াজিব সিজদাহ তালিকা:** সিজদার আয়াতসমূহের তালিকা ও সরাসরি জাম্পার।
-* **⚖️ পারার কোয়ার্টার মার্কার:** প্রতি পারার রুব' (১/৪), নিসফ (১/২), সালাসা (৩/৪) সাইড মার্কার।
-* **🎯 সবক, আমুখতা ও দাওর ট্র্যাকার:**
-  * 🟢 **সবক (New Lesson):** নতুন পড়া মার্ক করে রাখা।
-  * 🟡 **আমুখতা (Revision):** পেছনের মুখস্থ অংশ ট্র্যাক করা।
-  * 🔵 **দাওর (Full Cycle):** বড় রিভিশন খতম সংরক্ষণ করা।
-
-### ৪. স্মার্ট সার্চ ও ইনস্ট্যান্ট জাম্পার
-* পারা নাম (বাংলা ও আরবি)
-* সূরা নাম (বাংলা ও আরবি)
-* সরাসরি পৃষ্ঠা নম্বর (যেমন `১২৫` লিখে এন্টার দিলেই সরাসরি উক্ত পৃষ্ঠায় চলে যাবে)।
-
-### ৫. থিম ও চোখের আরাম
-* **হোয়াইট পেপার (Paper):** আসল ক্রিম-হোয়াইট কাগজের আবহ।
-* **সেপিয়া (Sepia):** মৃদু চোখের আরামদায়ক মোড।
-* **ডার্ক নাইট মোড (Dark):** রাতে পড়ার জন্য ডার্ক মোড।
+[![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.3-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com/)
 
 ---
 
-## 🚀 লোকাল মেশিনে চালানোর নিয়ম (How to Run Locally)
+## 🌟 Overview
 
-```bash
-# ১. ডিপেনডেন্সি ইন্সটল করুন (যদি না থাকে)
-npm install
-
-# ২. ডেভেলপমেন্ট সার্ভার চালু করুন
-npm run dev
-
-# ৩. প্রোডাকশন প্রিভিউ দেখতে
-npm run preview
-```
-
-ব্রাউজারে [http://localhost:5173](http://localhost:5173) বা [http://localhost:4173](http://localhost:4173) ওপেন করলেই ওয়েবসাইটটি দেখতে পাবেন।
+The **15-Line Noorani Hafezi Quran Sharif** is an authentic, distraction-free Islamic platform crafted specifically for Huffaz, Quran students, and readers worldwide. It digitally replicates the classical 15-line printed Emdadia Hafezi Quran format while providing modern reading modes, multi-reciter audio playback, interactive Hifz trackers, and cloud accounting.
 
 ---
 
-## 🌐 অনলাইনে সম্পূর্ণ ফ্রিতে লাইভ ডেপ্লয়মেন্ট (Deploy Live for Free)
+## ✨ Key Features
 
-এই প্রজেক্টটি খুব সহজে **Vercel** অথবা **Cloudflare Pages** এ ডেপ্লয় করা যাবে:
+### 1. Classical 15-Line Emdadia Standard
+* **Complete 611 Pages:** High-resolution, crisp typography matching the traditional printed Hafezi Mushaf.
+* **Hifz Consistency:** Fixed 20-page paras and full ayah endings on every page preserved with 100% accuracy.
 
-### Vercel-এ ডেপ্লয় করার নিয়ম:
-1. কোডগুলো আপনার GitHub রিপোজিটরিতে পুশ করুন।
-2. [vercel.com](https://vercel.com) এ লগইন করে **"Add New Project"** এ গিয়ে রিপোজিটরিটি সিলেক্ট করুন।
-3. **Deploy** বাটনে ক্লিক করুন। মাত্র ১ মিনিটের মধ্যে আপনার ওয়েবসাইট বিশ্বব্যাপী লাইভ হয়ে যাবে!
+### 2. Dual Specialized Reading Modes
+* **💻 Desktop Two-Page Spread (Book View):** Realistic open-book experience with natural page shadows, mirroring authentic physical Quran reading.
+* **📱 Mobile Full-Bleed (Single Page View):** Edge-to-edge maximized single-page view designed for seamless touch and swipe navigation.
+* **🧘 Zen Mode:** Single tap/click to eliminate all UI bars for deep, focused recitation.
+
+### 3. Audio Recitation Suite
+* **World-Renowned Qaris:** Instant page-by-page and ayah-by-ayah recitation playback.
+* **Interactive Floating Player:** Minimize to a compact pill or expand to full controls with smooth animations, speed controls, and ayah drawer.
+* **Keyboard Hotkeys:** Spacebar for Play/Pause, arrow keys for page turning.
+
+### 4. Comprehensive Hifz Companion
+* **🔖 Per-Page Corner Bookmark:** Quick-save bookmark button on every individual page corner.
+* **🎯 Category Tracking:** Separate bookmarks for **Sabaq** (New Lesson), **Amukhta** (Recent Revision), and **Dawr** (Full Cycle).
+* **🕌 Special Surahs & Index:** Instant navigation for Musabbahat Surahs, 7 Manzils, and 14 Sajdah ayahs.
+
+### 5. Multi-Tenant Cloud Architecture (Supabase)
+* **PostgreSQL & Row-Level Security (RLS):** Isolated private data access for each authenticated user.
+* **Google Authentication:** Seamless one-click OAuth sign-in.
+* **Accounting & Management:** Financial tracking, accounts, invoices, and ledger integration.
+
+---
+
+## 🛠️ Technology Stack
+
+* **Frontend:** React 18, TypeScript, Vite
+* **Styling:** Tailwind CSS, Custom Glassmorphism, CSS Transitions
+* **Icons & Audio:** Lucide React, HTML5 Audio Web API, Web Audio SFX
+* **Database & Auth:** Supabase (PostgreSQL, Row-Level Security, OAuth)
+* **PWA:** Service Worker caching for 100% offline access
+
+---
+
+## 👤 Planned & Initiated By
+
+**Hafiz Md. Moinul Islam**  
+*Hafez-e-Quran & Software Engineer / Islamic Digital Solutions Architect*
+
+---
+
+## 📜 License
+
+This project is open-source and dedicated as a **Sadaqah Jariyah** for the Muslim Ummah.
