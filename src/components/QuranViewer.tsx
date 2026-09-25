@@ -562,7 +562,7 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
       {effectiveMode === 'single' && (
         <div 
           onClick={handlePageTap}
-          className="w-full flex-1 flex flex-col items-center justify-center relative cursor-pointer p-0 select-none min-h-[calc(100dvh-56px)] pt-14 pb-20 sm:pt-16 sm:pb-6"
+          className="w-full flex-1 flex flex-col items-center justify-center relative cursor-pointer p-0 select-none min-h-[calc(100dvh-64px)] pt-17 pb-24 sm:pt-20 sm:pb-8"
         >
           {/* Full-Bleed Quran Page Image (Maximized for Mobile Screen) */}
           <div
@@ -572,7 +572,7 @@ export const QuranViewer: React.FC<QuranViewerProps> = ({
             <img
               src={`/pages/page_${currentPage}.webp`}
               alt={`Hafezi Quran Page ${currentPage}`}
-              className="w-full h-[calc(100dvh-145px)] sm:h-[86vh] object-contain block mx-auto select-none transition-all"
+              className="w-full h-[calc(100dvh-155px)] sm:h-[86vh] object-contain block mx-auto select-none transition-all"
               loading="eager"
             />
           </div>

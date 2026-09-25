@@ -93,24 +93,24 @@ export const Header: React.FC<HeaderProps> = ({
         isEn ? 'font-sans' : 'font-bengali'
       }`}
     >
-      <div className="max-w-[1760px] mx-auto px-2 xs:px-3 sm:px-8 h-13 sm:h-16 flex items-center justify-between">
+      <div className="max-w-[1760px] mx-auto px-2.5 xs:px-3 sm:px-8 h-16 flex items-center justify-between">
         
         {/* ========================================================
-            1. MOBILE APP HEADER (< md / 768px) - Clean, Uncluttered & Fast
+            1. MOBILE APP HEADER (< md / 768px) - Spacious, Elegant & Clear
         ======================================================== */}
-        <div className="flex md:hidden items-center justify-between w-full gap-2 h-13 px-0.5">
+        <div className="flex md:hidden items-center justify-between w-full gap-1.5 h-16">
           {/* Left: Home & Index Drawer */}
           <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={onOpenHome}
-              className="w-9 h-9 rounded-xl text-gray-700 dark:text-gray-200 hover:bg-emerald-50 dark:hover:bg-emerald-950/50 flex items-center justify-center active:scale-95 transition-all cursor-pointer"
+              className="w-10 h-10 rounded-full text-amber-600 dark:text-amber-400 hover:bg-amber-50/80 dark:hover:bg-amber-950/40 flex items-center justify-center active:scale-95 transition-all cursor-pointer"
               title={isEn ? 'Return Home' : 'হোমে ফিরে যান'}
             >
-              <Home className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+              <Home className="w-5 h-5" />
             </button>
             <button
               onClick={onToggleDrawer}
-              className="h-9 px-2.5 rounded-xl text-emerald-900 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-300/70 dark:border-emerald-800/70 font-bold text-xs flex items-center gap-1 shadow-2xs active:scale-95 transition-all cursor-pointer"
+              className="h-10 px-3 rounded-full text-emerald-900 dark:text-emerald-200 bg-emerald-50/90 dark:bg-emerald-950/60 border border-emerald-500/25 font-bold text-xs flex items-center gap-1.5 shadow-2xs active:scale-95 transition-all cursor-pointer"
               title={isEn ? 'Open Quran Index' : 'সূচীপত্র'}
             >
               <Menu className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
@@ -121,10 +121,10 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Center: Live Surah & Page Number (Tappable Search & Jump) */}
           <button
             onClick={onOpenSearch}
-            className="flex-1 flex items-center justify-center gap-1.5 h-9 px-2.5 rounded-full bg-emerald-50/90 dark:bg-emerald-950/60 border border-emerald-300/70 dark:border-emerald-700/60 text-emerald-950 dark:text-emerald-100 shadow-2xs active:scale-98 transition-all group cursor-pointer min-w-0"
+            className="flex-1 flex items-center justify-center gap-1.5 h-10 px-3 rounded-full bg-emerald-50/90 dark:bg-emerald-950/60 border border-emerald-500/25 text-emerald-950 dark:text-emerald-100 shadow-2xs active:scale-98 transition-all group cursor-pointer min-w-0 max-w-[210px] mx-1"
             title={isEn ? 'Search or Jump to Surah / Page' : 'সূরা বা পৃষ্ঠায় যান'}
           >
-            <span className="truncate text-xs font-bold text-emerald-950 dark:text-emerald-100">
+            <span className="truncate text-xs font-black text-emerald-950 dark:text-emerald-100">
               {activeSurahName || (isEn ? 'Holy Quran' : 'পবিত্র কুরআন')}
             </span>
             <span className="bg-emerald-600 text-white px-2 py-0.5 rounded-full text-[10px] font-black shadow-2xs whitespace-nowrap shrink-0">
@@ -141,18 +141,18 @@ export const Header: React.FC<HeaderProps> = ({
                 else if (theme === 'sepia') onChangeTheme('dark');
                 else onChangeTheme('paper');
               }}
-              className="w-8 h-8 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center transition-colors cursor-pointer"
+              className="w-9 h-9 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center transition-colors cursor-pointer"
               title={isEn ? `Theme: ${theme}` : `থিম: ${theme}`}
             >
-              {theme === 'paper' && <Sun className="w-4 h-4 text-amber-500" />}
-              {theme === 'sepia' && <Sparkles className="w-4 h-4 text-yellow-600" />}
-              {theme === 'dark' && <Moon className="w-4 h-4 text-blue-400" />}
+              {theme === 'paper' && <Sun className="w-4.5 h-4.5 text-amber-500" />}
+              {theme === 'sepia' && <Sparkles className="w-4.5 h-4.5 text-yellow-600" />}
+              {theme === 'dark' && <Moon className="w-4.5 h-4.5 text-blue-400" />}
             </button>
 
             {/* Language Switch */}
             <button
               onClick={onToggleLang}
-              className="h-8 px-2 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-300/70 dark:border-amber-700/60 text-amber-900 dark:text-amber-200 text-[11px] font-extrabold flex items-center justify-center transition-all cursor-pointer"
+              className="h-9 px-2.5 rounded-full bg-amber-50/90 dark:bg-amber-950/50 border border-amber-500/25 text-amber-900 dark:text-amber-200 text-[11px] font-extrabold flex items-center justify-center transition-all active:scale-95 cursor-pointer"
               title={isEn ? 'Switch Language' : 'ভাষা পরিবর্তন'}
             >
               {t.langToggle}
