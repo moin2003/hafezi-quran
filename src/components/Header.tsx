@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({
   const t = {
     home: isEn ? 'Home' : 'হোম',
     index: isEn ? 'Index' : 'সূচীপত্র',
-    brand: isEn ? 'Hafezi Quran' : 'হাফেজী কোরআন',
+    brand: 'QuranFolio',
     audio: isEn ? 'Recite' : 'তিলাওয়াত',
     tracker: isEn ? 'Hafiz Tracker' : 'হাফিজ ট্র্যাকার',
     bookmark: isEn ? 'Bookmark' : 'বুকমার্ক',
@@ -124,7 +124,7 @@ export const Header: React.FC<HeaderProps> = ({
             title={isEn ? 'Search or Jump to Surah / Page' : 'সূরা বা পৃষ্ঠায় যান'}
           >
             <span className="text-sm font-black text-gray-900 dark:text-gray-50 truncate tracking-tight leading-tight">
-              {activeSurahName || (isEn ? 'Holy Quran' : 'পবিত্র কুরআন')}
+              {activeSurahName || 'QuranFolio'}
             </span>
             <span className="text-[10px] font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5 leading-none mt-0.5">
               <span>{pageInfo.para ? (isEn ? `Para ${pageInfo.para.number}` : `পারা ${toBanglaNumber(pageInfo.para.number)}`) : ''}</span>

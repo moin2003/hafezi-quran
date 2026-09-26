@@ -154,7 +154,7 @@ export const AboutDeveloperModal: React.FC<AboutDeveloperModalProps> = ({
                 {isEn ? 'About the Developer & Initiator' : 'উদ্যোক্তা ও ডেভেলপার পরিচিতি'}
               </h3>
               <p className="text-[11px] text-emerald-300/80 font-medium">
-                {isEn ? 'Creator of 15 Lines Noorani Hafezi Quran' : '১৫ লাইনের নূরানী হাফেজী কুরআন শরীফ প্ল্যাটফর্ম'}
+                {isEn ? 'Creator & Initiator of QuranFolio' : 'QuranFolio — ১৫ লাইনের নূরানী হাফেজী কুরআন প্ল্যাটফর্ম'}
               </p>
             </div>
           </div>

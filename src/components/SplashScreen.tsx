@@ -221,8 +221,18 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onEnter, onOpenAbout
           </div>
         </div>
 
+        {/* Brand Name & Tagline */}
+        <div className="mt-3 sm:mt-5 text-center select-none shrink-0">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-amber-100 font-sans drop-shadow-[0_4px_24px_rgba(212,175,55,0.45)]">
+            QuranFolio
+          </h1>
+          <p className="text-[11px] xs:text-xs sm:text-sm font-bengali text-emerald-200/90 font-semibold tracking-wide mt-0.5 sm:mt-1 drop-shadow">
+            ১৫ লাইনের নূরানী হাফেজী কুরআন শরীফ
+          </p>
+        </div>
+
         {/* Enter Holy Quran Button (Enhanced size & positioned comfortably below dial on PC) */}
-        <div className="mt-8 sm:mt-8 md:mt-10 lg:mt-12 shrink-0 flex items-center justify-center">
+        <div className="mt-4 sm:mt-6 shrink-0 flex items-center justify-center">
           <button
             onClick={handleEnterQuran}
             onMouseEnter={() => sfx.playHoverTone()}

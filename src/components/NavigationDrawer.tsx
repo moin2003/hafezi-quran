@@ -48,8 +48,8 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   const isEn = lang === 'en';
 
   const t = {
-    title: isEn ? 'Quran Index & Navigation' : 'হাফেজী কুরআন সূচীপত্র',
-    subtitle: isEn ? '15-Line Hafezi Edition • 30 Paras & 114 Surahs' : '১৫ লাইনের পূর্ণাঙ্গ হাফিজি ইনডেক্স',
+    title: isEn ? 'QuranFolio Index' : 'QuranFolio সূচীপত্র',
+    subtitle: isEn ? '15-Line Noorani Hafezi Edition • 30 Paras & 114 Surahs' : '১৫ লাইনের নূরানী হাফেজী সংস্করণ',
     searchPlaceholder: isEn ? 'Search Surah, Para, or Page...' : 'পারা বা সূরার নাম দিয়ে খুঁজুন...',
     clear: isEn ? 'Clear' : 'মুছুন',
     tabParas: isEn ? 'Paras (30)' : 'পারা (৩০)',
