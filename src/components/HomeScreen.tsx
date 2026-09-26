@@ -220,6 +220,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
           {/* 2. Single-Line Title & Subtitle with Integrated Controls */}
           <div className="flex flex-col items-center lg:items-start w-full space-y-1.5 sm:space-y-2.5">
+            {/* 3D Golden QuranFolio Logo */}
+            <div className="mb-0.5 select-none pointer-events-none">
+              <img
+                src="/images/quranfolio_logo_gold.png"
+                alt="QuranFolio"
+                className="w-[130px] xs:w-[160px] sm:w-[200px] lg:w-[230px] h-auto object-contain drop-shadow-[0_4px_16px_rgba(212,175,55,0.4)]"
+                loading="eager"
+              />
+            </div>
+
             {/* Single-Line Hero Title with Anek Bangla font and fluid responsive size */}
             <h1 className="font-bengali text-lg xs:text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 via-white to-amber-200 tracking-wide drop-shadow-md leading-[1.3] py-0.5">
               {t.heroTitle}
