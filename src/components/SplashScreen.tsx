@@ -221,18 +221,8 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onEnter, onOpenAbout
           </div>
         </div>
 
-        {/* Brand Name & Tagline */}
-        <div className="mt-3 sm:mt-5 text-center select-none shrink-0">
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-300 to-amber-100 font-sans drop-shadow-[0_4px_24px_rgba(212,175,55,0.45)]">
-            QuranFolio
-          </h1>
-          <p className="text-[11px] xs:text-xs sm:text-sm font-bengali text-emerald-200/90 font-semibold tracking-wide mt-0.5 sm:mt-1 drop-shadow">
-            ১৫ লাইনের নূরানী হাফেজী কুরআন শরীফ
-          </p>
-        </div>
-
-        {/* Enter Holy Quran Button (Enhanced size & positioned comfortably below dial on PC) */}
-        <div className="mt-4 sm:mt-6 shrink-0 flex items-center justify-center">
+        {/* Enter Holy Quran Button (Positioned comfortably below dial) */}
+        <div className="mt-8 sm:mt-8 md:mt-10 lg:mt-12 shrink-0 flex items-center justify-center">
           <button
             onClick={handleEnterQuran}
             onMouseEnter={() => sfx.playHoverTone()}
@@ -258,14 +248,14 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onEnter, onOpenAbout
           <div className="max-w-5xl mx-auto flex items-center justify-between gap-4 text-center">
             {/* Left: Edition Specifications Clean Typography */}
             <div className="flex items-center gap-2 text-xs tracking-wider uppercase">
-              <span className="flex items-center gap-1.5 font-bold text-amber-300 drop-shadow">
+              <span className="flex items-center gap-1.5 font-black text-amber-300 drop-shadow tracking-widest">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                15 LINES HAFEZI SCRIPT
+                QURANFOLIO
               </span>
               <span className="text-emerald-500/70">•</span>
-              <span className="text-emerald-100/90 font-semibold tracking-wide">NOORANI STANDARD</span>
+              <span className="text-emerald-100/90 font-semibold tracking-wide">15 LINES HAFEZI SCRIPT</span>
               <span className="text-emerald-500/70">•</span>
-              <span className="text-emerald-300 font-medium">COMPLETE 30 PARAS</span>
+              <span className="text-emerald-300 font-medium">NOORANI STANDARD</span>
             </div>
 
             {/* Right: Initiator Credit Clean Typography (Clickable to open About Developer) */}
@@ -290,12 +280,12 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onEnter, onOpenAbout
         <div className="sm:hidden flex flex-col items-center justify-center">
           {/* 1. Unboxed Clean Typography (Above Divider) */}
           <div className="flex flex-wrap items-center justify-center gap-1.5 text-[10px] xs:text-[11px] tracking-wider uppercase mb-2">
-            <span className="flex items-center gap-1 font-bold text-amber-300 drop-shadow">
+            <span className="flex items-center gap-1 font-black text-amber-300 drop-shadow tracking-widest">
               <Sparkles className="w-3 h-3 text-amber-400 shrink-0" />
-              15 LINES HAFEZI SCRIPT
+              QURANFOLIO
             </span>
             <span className="text-emerald-500/70">•</span>
-            <span className="text-emerald-100/90 font-semibold tracking-wide">NOORANI STANDARD</span>
+            <span className="text-emerald-100/90 font-semibold tracking-wide">15 LINES NOORANI HAFEZI</span>
           </div>
 
           {/* 2. Middle Golden Hairline Divider */}
